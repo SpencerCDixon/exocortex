@@ -10,6 +10,11 @@ type PageResponse struct {
 	Body string `json:"body"`
 }
 
+// ListResponse is the results of querying for a prefix
+type ListResponse struct {
+	Prefixes []string `json:"prefixes"`
+}
+
 // Page is a page in our wiki
 type Page struct {
 	Prefix string

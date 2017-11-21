@@ -3,6 +3,7 @@ package wiki
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
@@ -10,13 +11,15 @@ import (
 )
 
 func (wiki *wiki) handleList(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Handle list")
 	str, err := wiki.store.LS()
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 	}
 
-	fmt.Fprintf(w, str)
+	results := strings.Split(str, "\n")
+
+	res := &exo.ListResponse{Prefixes: results}
+	wiki.renderJSON(w, http.StatusOK, res)
 }
 
 func (wiki *wiki) handleView(w http.ResponseWriter, r *http.Request) {
