@@ -1,3 +1,10 @@
+/* Ensure we can have full screen pages */
+html,
+body,
+#app {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
