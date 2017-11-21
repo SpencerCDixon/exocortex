@@ -25,7 +25,7 @@ func (wiki *wiki) handleView(w http.ResponseWriter, r *http.Request) {
 	body, err := wiki.store.View(vars["page"])
 	if err != nil {
 		res := &exo.PageResponse{Body: ""}
-		wiki.renderJSON(w, http.StatusOK, res)
+		wiki.renderJSON(w, http.StatusNotFound, res)
 		return
 	}
 	res := &exo.PageResponse{Body: body}

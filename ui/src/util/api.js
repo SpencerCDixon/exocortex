@@ -1,7 +1,14 @@
+import axios from 'axios';
+
+const client = axios.create({
+  baseURL: '/api',
+  timeout: 10000,
+});
+
 export function list() {
-  return fetch('/api/');
+  return client.get('/');
 }
 
 export function view(page) {
-  return fetch(`/api/wiki/${page}`);
+  return client.get(`/wiki/${page}`);
 }

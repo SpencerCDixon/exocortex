@@ -7,6 +7,7 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 // Pages
 import HomePage from 'pages/HomePage';
 import WikiPage from 'pages/WikiPage';
+import NewWikiPage from 'pages/NewWikiPage';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Switch>
+          <Route path="/wiki/new/:page" component={NewWikiPage} />
           <Route path="/wiki/:page" component={WikiPage} />
           <Route path="/wiki" component={HomePage} />
           <Redirect to="/wiki" />

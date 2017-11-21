@@ -8,11 +8,9 @@ class HomePage extends Component {
   state = { data: [] };
 
   componentDidMount() {
-    Api.list()
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ data: res.prefixes });
-      });
+    Api.list().then(({ data }) => {
+      this.setState({ data: data.prefixes });
+    });
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import path from 'path';
 
 const style = {
   textDecoration: 'none',
@@ -8,17 +9,20 @@ const style = {
 };
 
 class WikiLink extends Component {
-  static propTypes = {};
+  static propTypes = {
+    location: PropTypes.string,
+  };
 
   render() {
-    const { href, children } = this.props;
+    const { location: { pathname }, href, children } = this.props;
+    const resolved = path.resolve(pathname, href);
 
     return (
-      <Link style={style} to={`/wiki/${href}`}>
+      <Link style={style} to={resolved}>
         {children}
       </Link>
     );
   }
 }
 
-export default WikiLink;
+export default withRouter(WikiLink);

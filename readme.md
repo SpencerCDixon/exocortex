@@ -9,7 +9,6 @@ Sometimes less is more.
 * Less configuration
 * No language runtime required
 
-
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
 get going (including sometimes installing new languages!).  Exocortex aims to
@@ -83,12 +82,6 @@ exocortex.json       <-- wiki globals
 | `/wiki/edit/:page-name` | Update a page that exists |
 | `/wiki/revisions/:page-name` | See past revisions | 
 
-## TODO
-
-- [ ] when a page doesn't exist redirect to an 'new' page in the UI
-- [ ] allow exo root command to look in local directory for config file
-- [ ] change --config flag to instead take it's location as an arg
-- [ ] set up background syncing 
 
 ## Development
 Ensure you have the following installed:
@@ -117,3 +110,33 @@ $ yarn start
 
 This should boot up `http://localhost:3000` with a dev server that proxies to
 `localhost:1234` (where the API lives).
+
+## Hotkeys
+
+TODO: more to come...
+
+<table>  
+  <tr>    
+    <th>Action</th>    
+    <th>Shortcut</th>  
+    <th>Description</th>  
+  </tr>  
+  <tr> 
+    <td>Zen Mode</td>    
+    <td>
+      <kbd>cmd</kbd> + <kbd>z </kbd>
+    </td>  
+    <td>
+      Eliminate all noise around the wiki for better editing
+    </td>
+  </tr>  
+</table>
+
+## TODO
+
+- [ ] when a page doesn't exist redirect to an 'new' page in the UI
+- [ ] allow exo root command to look in local directory for config file
+- [ ] change --config flag to instead take it's location as an arg
+- [ ] set up background syncing 
+- [ ] hot keys in frontend
+- [ ] zen mode editing
