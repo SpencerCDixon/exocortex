@@ -14,6 +14,14 @@ import (
 	"github.com/spencercdixon/exocortex/exo"
 )
 
+// PrefixIgnore are files that won't get returned when querying for list
+var PrefixIgnore = []string{
+	".gitignore",
+	"exocortex.json",
+	"readme.md",
+	"",
+}
+
 // Store satisfies the Store interface when using local git repo as the
 // underlying data storage for the Wiki
 type Store struct {
@@ -79,8 +87,12 @@ func (gs *Store) LSPattern(pattern string) (string, error) {
 }
 
 // LS is a global listing of files in the repo
-func (gs *Store) LS() (string, error) {
-	return gs.LSPattern("")
+func (gs *Store) LS() ([]string, error) {
+	str, err := gs.LSPattern("")
+	if err != nil {
+		return nil, err
+	}
+	return filterPrefixes(str), nil
 }
 
 // The current author according to global git config
@@ -137,6 +149,14 @@ func (gs *Store) EnsureValidEnvironment() error {
 		return errors.New("no git repository found")
 	}
 	return nil
+}
+
+func filterPrefixes(rawList string) []string {
+	prefixes := strings.Split(rawList, "\n")
+
+	return filter(prefixes, func(p string) bool {
+		return !include(PrefixIgnore, p)
+	})
 }
 
 func exists(path string) (bool, error) {
