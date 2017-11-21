@@ -66,19 +66,22 @@ exocortex.json       <-- wiki globals
 
 ## API Routes
 
-POST `/session` - sign in local user (match against white list of email/passes)
-GET `/wiki/:page-name` - retrieves content for this page
-POST `/wiki/:page-name` - writes the file, commits
-DELETE `/wiki/:page-name` - deletes the page
-GET `/*` - return the UI
+| Method | Path | Description |
+|--------|------|-------------|
+| **POST** | `/session` | TODO. sign in local user (match against white list of email/passes) |
+| **GET** | `/api/wiki/:page-name` | retrieves content for this page |
+| **POST** | `/api/wiki/:page-name` | writes the file, commits |
+| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
+| **GET** | `/api/` | returns list of prefixes available|
+| **GET** | `/*` | return the UI |
 
 ## UI Routes
-
-`/wiki/:page-name`
-`/wiki/new/:page-name`
-`/wiki/edit/:page-name`
-`/wiki/revisions/:page-name`
-`/wiki/history/:page-name`
+| Route | Description |
+|-------|-------------|
+| `/wiki/:page-name` | Renders markdown of that path |
+| `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
+| `/wiki/edit/:page-name` | Update a page that exists |
+| `/wiki/revisions/:page-name` | See past revisions | 
 
 ## TODO
 
