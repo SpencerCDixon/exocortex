@@ -4,9 +4,11 @@ import remark from 'remark';
 import reactRenderer from 'remark-react';
 import RemarkLowlight from 'remark-react-lowlight';
 
-import githubSchema from 'hast-util-sanitize/lib/github.json';
+// Custom Overrides
+import WikiLink from 'components/WikiLink';
 
 // TODO: maybe just load all of the langs?
+import githubSchema from 'hast-util-sanitize/lib/github.json';
 import js from 'highlight.js/lib/languages/javascript';
 import sql from 'highlight.js/lib/languages/sql';
 import ruby from 'highlight.js/lib/languages/ruby';
@@ -34,6 +36,7 @@ class Markdown extends Component {
       .use(reactRenderer, {
         sanitize: schema,
         remarkReactComponents: {
+          a: WikiLink,
           code: RemarkLowlight({
             js,
             sql,

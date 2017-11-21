@@ -4,6 +4,10 @@ import Markdown from 'components/Markdown';
 import { Flex, Box } from 'reflexbox';
 import * as Api from 'util/api';
 
+const style = {
+  width: '100%',
+};
+
 class WikiPage extends Component {
   state = { content: '' };
 
@@ -13,10 +17,20 @@ class WikiPage extends Component {
       .then(data => this.setState({ content: data.body }));
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.page !== nextProps.match.params.page) {
+      Api.view(nextProps.match.params.page)
+        .then(res => res.json())
+        .then(data => this.setState({ content: data.body }));
+    }
+  }
+
   render() {
     return (
-      <Flex m="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
-        <Markdown>{this.state.content}</Markdown>
+      <Flex column m="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
+        <div>
+          <Markdown>{this.state.content}</Markdown>
+        </div>
       </Flex>
     );
   }
