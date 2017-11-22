@@ -7,7 +7,7 @@ import 'sanitize.css';
 import 'index.css';
 
 class AppProvider extends Component {
- render() {
+  render() {
     return (
       <Router>
         <App />
