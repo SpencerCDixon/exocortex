@@ -47,9 +47,11 @@ export default function withWikiPage(BaseComponent) {
     };
 
     render() {
+      const { match: { params: { page } } } = this.props;
       if (this.state.content) {
         return (
           <BaseComponent
+            page={page}
             content={this.state.content}
             onEdit={this.handleEdit}
             {...this.props}

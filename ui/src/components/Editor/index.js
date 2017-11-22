@@ -7,6 +7,7 @@ import Prism from 'prismjs';
 import Markdown from 'components/Markdown';
 import ContentWrapper from 'components/ContentWrapper';
 import { Flex, Box } from 'reflexbox';
+import * as Api from 'util/api';
 
 const plugins = [];
 
@@ -37,8 +38,11 @@ class Editor extends Component {
       }
       case 's': {
         event.preventDefault();
-        // Save our page
-        alert('Save TODO');
+        Api.save(this.props.page, this.state.raw)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(e => console.log(e));
       }
     }
   };

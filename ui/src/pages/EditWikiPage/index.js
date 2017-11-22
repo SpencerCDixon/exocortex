@@ -5,10 +5,15 @@ import withWikiPage from 'util/withWikiPage';
 import Editor from 'components/Editor';
 
 class EditWikiPage extends Component {
+  static propTypes = {
+    page: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  };
+
   render() {
     return (
       <Flex column>
-        <Editor initialValue={this.props.content} />
+        <Editor page={this.props.page} initialValue={this.props.content} />
       </Flex>
     );
   }

@@ -112,7 +112,7 @@ func (gs *Store) View(path string) (string, error) {
 }
 
 func (gs *Store) WritePage(p *exo.Page) error {
-	path := p.Prefix + ".md"
+	path := ensureMDExtension(p.Prefix)
 	absPath := filepath.Join(gs.Repo, path)
 	if err := ioutil.WriteFile(absPath, []byte(p.Body), 0600); err != nil {
 		return err
