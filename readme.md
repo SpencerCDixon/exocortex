@@ -130,6 +130,25 @@ TODO: more to come...
       Eliminate all noise around the wiki for better editing
     </td>
   </tr>  
+  <tr> 
+    <td>Insert Mode</td>    
+    <td>
+      <kbd>cmd</kbd> + <kbd>i </kbd>
+    </td>  
+    <td>
+      Turn whatever page you're viewing into 'edit' mode 
+    </td>
+  </tr>  
+  <tr> 
+    <td>Preview Mode</td>    
+    <td>
+      <kbd>cmd</kbd> + <kbd>p </kbd>
+    </td>  
+    <td>
+      Turn whatever page you're viewing into 'edit' mode and split screen with a
+      preview of what the MD will render to on the right
+    </td>
+  </tr>  
 </table>
 
 ## TODO
@@ -140,3 +159,6 @@ TODO: more to come...
 - [ ] set up background syncing 
 - [ ] hot keys in frontend
 - [ ] zen mode editing
+
+
+[resolve path](https://github.com/mjackson/resolve-pathname)

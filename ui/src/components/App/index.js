@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import * as Api from 'util/api';
-import Markdown from 'components/Markdown';
 import NavBar from 'components/NavBar';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
@@ -8,6 +6,7 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import HomePage from 'pages/HomePage';
 import WikiPage from 'pages/WikiPage';
 import NewWikiPage from 'pages/NewWikiPage';
+import EditWikiPage from 'pages/EditWikiPage';
 
 class App extends Component {
   render() {
@@ -15,9 +14,10 @@ class App extends Component {
       <div>
         <NavBar />
         <Switch>
-          <Route path="/wiki/new/:page" component={NewWikiPage} />
-          <Route path="/wiki/:page" component={WikiPage} />
-          <Route path="/wiki" component={HomePage} />
+          <Route exact path="/wiki" component={HomePage} />
+          <Route path="/wiki/new/:page*" component={NewWikiPage} />
+          <Route path="/wiki/edit/:page*" component={EditWikiPage} />
+          <Route path="/wiki/:page*" component={WikiPage} />
           <Redirect to="/wiki" />
         </Switch>
       </div>
