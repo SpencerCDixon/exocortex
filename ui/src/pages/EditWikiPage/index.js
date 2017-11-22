@@ -6,16 +6,15 @@ import Editor from 'components/Editor';
 
 class EditWikiPage extends Component {
   static propTypes = {
-    page: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
+
+    onEdit: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
   };
 
   render() {
-    return (
-      <Flex column>
-        <Editor page={this.props.page} initialValue={this.props.content} />
-      </Flex>
-    );
+    const { onSave, onView, content } = this.props;
+    return <Editor onView={onView} onSave={onSave} initialValue={content} />;
   }
 }
 

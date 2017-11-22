@@ -12,6 +12,12 @@ import * as Api from 'util/api';
 const plugins = [];
 
 class Editor extends Component {
+  static propTypes = {
+    initialValue: PropTypes.string.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onView: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,11 +44,14 @@ class Editor extends Component {
       }
       case 's': {
         event.preventDefault();
-        Api.save(this.props.page, this.state.raw)
-          .then(res => {
-            console.log(res);
-          })
-          .catch(e => console.log(e));
+        this.props.onSave(this.state.raw);
+        this.props.onView();
+        break;
+      }
+      case 'v': {
+        event.preventDefault();
+        this.props.onView();
+        break;
       }
     }
   };
@@ -50,12 +59,7 @@ class Editor extends Component {
   renderMark = props => {
     const { children, mark } = props;
     switch (mark.type) {
-      case 'url':
-        return (
-          <a href="" style={{ color: 'pink' }}>
-            {children}
-          </a>
-        );
+      // case 'url':
       case 'bold':
         return <strong>{children}</strong>;
       case 'code':
