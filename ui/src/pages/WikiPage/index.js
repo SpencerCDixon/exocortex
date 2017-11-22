@@ -3,6 +3,7 @@ import Markdown from 'components/Markdown';
 import { Flex, Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
 import isHotkey from 'is-hotkey';
+import ContentWrapper from 'components/ContentWrapper';
 
 const isInsert = isHotkey('mod+i');
 const isEdit = isHotkey('mod+e');
@@ -25,13 +26,10 @@ class WikiPage extends Component {
   render() {
     const { onEdit, content } = this.props;
     return (
-      <Flex column m="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
-        <Box>
-          <button onClick={onEdit}>edit</button>
-        </Box>
-        <div>
+      <Flex column mx="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
+        <ContentWrapper>
           <Markdown>{content}</Markdown>
-        </div>
+        </ContentWrapper>
       </Flex>
     );
   }

@@ -27,14 +27,15 @@ class Editor extends Component {
   onKeyDown = (event, change) => {
     if (!event.metaKey) return;
 
-    event.preventDefault();
     switch (event.key) {
       case 'p': {
+        event.preventDefault();
         // Enter preview mode
         this.setState({ preview: !this.state.preview });
         break;
       }
       case 's': {
+        event.preventDefault();
         // Save our page
         alert('Save TODO');
       }
@@ -163,21 +164,30 @@ class Editor extends Component {
   }
 
   render() {
+    const { value, raw, preview } = this.state;
+
     return (
       <Flex>
-        <Flex w="50%">
+        <Flex mx="auto" w={preview ? '50%' : '100%'} p={2}>
           <SlateEditor
+            style={{
+              margin: '0 auto',
+              minWidth: preview ? '90%' : '60%',
+            }}
             onKeyDown={this.onKeyDown}
-            value={this.state.value}
+            value={value}
             onChange={this.onChange}
             plugins={plugins}
             renderMark={this.renderMark}
             decorateNode={this.decorateNode}
+            autoFocus
+            spellCheck
           />
         </Flex>
-        {this.state.preview && (
-          <Flex w="50%">
-            <Markdown>{this.state.raw}</Markdown>
+
+        {preview && (
+          <Flex mx="auto" w="50%" p={2}>
+            <Markdown>{raw}</Markdown>
           </Flex>
         )}
       </Flex>
