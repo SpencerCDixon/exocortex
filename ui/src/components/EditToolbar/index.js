@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box } from 'reflexbox';
-import { Save as SaveIcon } from 'react-feather';
+import { X, Save as SaveIcon } from 'react-feather';
 import styled from 'styled-components';
-import { colors } from 'style';
+import { baseIcon } from 'style';
 
 const Save = styled(SaveIcon)`
-  color: ${colors.gray1};
-
-  &:hover {
-    cursor: pointer;
-    color: ${colors.gray2};
-  }
+  ${baseIcon};
+`;
+const Close = styled(X)`
+  ${baseIcon};
 `;
 
 class EditToolbar extends Component {
@@ -24,9 +22,14 @@ class EditToolbar extends Component {
       <Flex align="center">
         <Box />
 
-        <Box ml="auto">
-          <Save onClick={this.props.onSave} />
-        </Box>
+        <Flex ml="auto">
+          <Box>
+            <Save onClick={this.props.onSave} />
+          </Box>
+          <Box ml={2}>
+            <Close onClick={this.props.onClose} />
+          </Box>
+        </Flex>
       </Flex>
     );
   }

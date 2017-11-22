@@ -6,6 +6,7 @@ import Search from 'components/Search';
 import { colors } from 'style';
 import { Settings as SettingsIcon } from 'react-feather';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 const Container = styled(Flex)`
   background: ${colors.gray1};
@@ -23,6 +24,8 @@ const Settings = styled(SettingsIcon)`
 `;
 
 class NavBar extends Component {
+  handleSettings = () => this.props.history.push(`/wiki/settings`);
+
   render() {
     return (
       <Container>
@@ -32,7 +35,7 @@ class NavBar extends Component {
           <Flex justify="center" align="center" mr={2}>
             <Search placeholder="Search Wiki..." />
             <Box ml={2}>
-              <Settings />
+              <Settings onClick={this.handleSettings} />
             </Box>
           </Flex>
         </Flex>
@@ -41,4 +44,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

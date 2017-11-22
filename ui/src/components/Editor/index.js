@@ -188,7 +188,7 @@ class Editor extends Component {
       <Flex>
         <Flex w={preview ? '50vw' : '100%'}>
           <ContentWrapper>
-            <EditToolbar onSave={this.handleSave} />
+            <EditToolbar onClose={this.props.onView} onSave={this.handleSave} />
             <SlateEditor
               style={{
                 margin: '0 auto',
