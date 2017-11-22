@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Api from 'util/api';
 import { Box, Flex } from 'reflexbox';
 import WikiLink from 'components/WikiLink';
+import Editor from 'components/Editor';
 
 class HomePage extends Component {
   state = { data: [] };
