@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { Flex, Box } from 'reflexbox';
 import NavLink from 'components/NavLink';
 import Search from 'components/Search';
+import { colors } from 'style';
 
 const style = {
   container: {
-    background: '#1C2022',
-  },
-  link: {
-    color: 'white',
+    background: colors.gray1,
   },
 };
 
