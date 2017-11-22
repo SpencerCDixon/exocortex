@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Markdown from 'components/Markdown';
 import { Flex, Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
-// import { withRouter } from 'react-router-dom';
-// import * as Api from 'util/api';
 
 const style = {
   width: '100%',
