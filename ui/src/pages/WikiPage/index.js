@@ -26,11 +26,9 @@ class WikiPage extends Component {
   render() {
     const { onEdit, content } = this.props;
     return (
-      <Flex column mx="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
-        <ContentWrapper>
-          <Markdown>{content}</Markdown>
-        </ContentWrapper>
-      </Flex>
+      <ContentWrapper>
+        <Markdown>{content}</Markdown>
+      </ContentWrapper>
     );
   }
 }

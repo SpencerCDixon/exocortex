@@ -31,30 +31,24 @@ class Markdown extends Component {
   };
 
   render() {
-    return (
-      <Flex>
-        {
-          remark()
-            .use(reactRenderer, {
-              sanitize: schema,
-              remarkReactComponents: {
-                a: WikiLink,
-                code: RemarkLowlight({
-                  js,
-                  sql,
-                  ruby,
-                  xml,
-                  python,
-                  java,
-                  css,
-                  elm,
-                }),
-              },
-            })
-            .processSync(this.props.children).contents
-        }
-      </Flex>
-    );
+    return remark()
+      .use(reactRenderer, {
+        sanitize: schema,
+        remarkReactComponents: {
+          a: WikiLink,
+          code: RemarkLowlight({
+            js,
+            sql,
+            ruby,
+            xml,
+            python,
+            java,
+            css,
+            elm,
+          }),
+        },
+      })
+      .processSync(this.props.children).contents;
   }
 }
 

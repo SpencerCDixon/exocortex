@@ -5,6 +5,7 @@ import { Value } from 'slate';
 import Plain from 'slate-plain-serializer';
 import Prism from 'prismjs';
 import Markdown from 'components/Markdown';
+import ContentWrapper from 'components/ContentWrapper';
 import { Flex, Box } from 'reflexbox';
 
 const plugins = [];
@@ -167,27 +168,31 @@ class Editor extends Component {
     const { value, raw, preview } = this.state;
 
     return (
-      <Flex>
-        <Flex mx="auto" w={preview ? '50%' : '100%'} p={2}>
-          <SlateEditor
-            style={{
-              margin: '0 auto',
-              minWidth: preview ? '90%' : '60%',
-            }}
-            onKeyDown={this.onKeyDown}
-            value={value}
-            onChange={this.onChange}
-            plugins={plugins}
-            renderMark={this.renderMark}
-            decorateNode={this.decorateNode}
-            autoFocus
-            spellCheck
-          />
+      <Flex column>
+        <Flex w={preview ? '50%' : '100%'}>
+          <ContentWrapper>
+            <SlateEditor
+              style={{
+                margin: '0 auto',
+                minWidth: preview ? '90%' : '60%',
+              }}
+              onKeyDown={this.onKeyDown}
+              value={value}
+              onChange={this.onChange}
+              plugins={plugins}
+              renderMark={this.renderMark}
+              decorateNode={this.decorateNode}
+              autoFocus
+              spellCheck
+            />
+          </ContentWrapper>
         </Flex>
 
         {preview && (
-          <Flex mx="auto" w="50%" p={2}>
-            <Markdown>{raw}</Markdown>
+          <Flex w="50%">
+            <ContentWrapper>
+              <Markdown>{raw}</Markdown>
+            </ContentWrapper>
           </Flex>
         )}
       </Flex>
