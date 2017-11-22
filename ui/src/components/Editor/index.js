@@ -6,6 +6,8 @@ import Plain from 'slate-plain-serializer';
 import Prism from 'prismjs';
 import Markdown from 'components/Markdown';
 import ContentWrapper from 'components/ContentWrapper';
+import EditToolbar from 'components/EditToolbar';
+import PreviewToolbar from 'components/PreviewToolbar';
 import { Flex, Box } from 'reflexbox';
 import * as Api from 'util/api';
 
@@ -27,6 +29,15 @@ class Editor extends Component {
     };
   }
 
+  handleSave = () => {
+    this.props.onSave(this.state.raw);
+    this.props.onView();
+  };
+
+  handlePreviewToggle = () => {
+    this.setState({ preview: !this.state.preview });
+  };
+
   onChange = ({ value }) => {
     const raw = Plain.serialize(value);
     this.setState({ value, raw });
@@ -38,14 +49,12 @@ class Editor extends Component {
     switch (event.key) {
       case 'p': {
         event.preventDefault();
-        // Enter preview mode
-        this.setState({ preview: !this.state.preview });
+        this.handlePreviewToggle();
         break;
       }
       case 's': {
         event.preventDefault();
-        this.props.onSave(this.state.raw);
-        this.props.onView();
+        this.handleSave();
         break;
       }
       case 'v': {
@@ -176,13 +185,15 @@ class Editor extends Component {
     const { value, raw, preview } = this.state;
 
     return (
-      <Flex column>
-        <Flex w={preview ? '50%' : '100%'}>
+      <Flex>
+        <Flex w={preview ? '50vw' : '100%'}>
           <ContentWrapper>
+            <EditToolbar onSave={this.handleSave} />
             <SlateEditor
               style={{
                 margin: '0 auto',
                 minWidth: preview ? '90%' : '60%',
+                minHeight: '100%',
               }}
               onKeyDown={this.onKeyDown}
               value={value}
@@ -195,10 +206,10 @@ class Editor extends Component {
             />
           </ContentWrapper>
         </Flex>
-
         {preview && (
-          <Flex w="50%">
+          <Flex w="50vw">
             <ContentWrapper>
+              <PreviewToolbar onClose={this.handlePreviewToggle} />
               <Markdown>{raw}</Markdown>
             </ContentWrapper>
           </Flex>

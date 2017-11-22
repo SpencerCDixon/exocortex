@@ -4,6 +4,7 @@ import { Flex, Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
 import isHotkey from 'is-hotkey';
 import ContentWrapper from 'components/ContentWrapper';
+import ViewToolbar from 'components/ViewToolbar';
 
 const isInsert = isHotkey('mod+i');
 const isEdit = isHotkey('mod+e');
@@ -27,6 +28,9 @@ class WikiPage extends Component {
     const { onEdit, content } = this.props;
     return (
       <ContentWrapper>
+        <Box pb={2} px={2}>
+          <ViewToolbar onEdit={onEdit} />
+        </Box>
         <Markdown>{content}</Markdown>
       </ContentWrapper>
     );
