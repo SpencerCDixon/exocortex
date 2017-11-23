@@ -46,11 +46,26 @@ func (wiki *wiki) handleWrite(w http.ResponseWriter, r *http.Request) {
 
 	err := wiki.store.WritePage(page)
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Error(err.Error())
 		return
 	}
 
 	res := &exo.PageResponse{Body: page.Body}
 
 	wiki.renderJSON(w, http.StatusCreated, res)
+}
+
+func (wiki *wiki) handleSearch(w http.ResponseWriter, r *http.Request) {
+	req := &exo.SearchRequest{}
+	if err := wiki.parseRequest(r, req); err != nil {
+		log.Error(err.Error())
+		return
+	}
+	results, err := wiki.store.Grep(req.Query)
+	if err != nil {
+		log.Error(err.Error())
+		return
+	}
+	res := &exo.SearchResponse{Results: results}
+	wiki.renderJSON(w, http.StatusOK, res)
 }

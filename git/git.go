@@ -112,13 +112,36 @@ func (gs *Store) View(path string) (string, error) {
 	return string(body), nil
 }
 
+func (gs *Store) Grep(pattern string) ([]exo.SearchResult, error) {
+	str, err := gs.exec("grep", "--no-color", "-F", "-n", "-i", "-I", pattern)
+	if err != nil {
+		return nil, err
+	}
+	lines := strings.Split(str, "\n")
+
+	var results []exo.SearchResult
+	for _, l := range lines {
+		if len(l) > 0 {
+			pieces := strings.Split(l, ":")
+			result := exo.SearchResult{
+				Page:       pieces[0],
+				LineNumber: pieces[1],
+				Content:    pieces[2],
+			}
+			results = append(results, result)
+		}
+	}
+	return results, nil
+}
+
+// WritePage writes and commits a page object to the wiki
 func (gs *Store) WritePage(p *exo.Page) error {
 	path := ensureMDExtension(p.Prefix)
 	absPath := filepath.Join(gs.Repo, path)
 	if err := ensureDirExists(absPath); err != nil {
 		return err
 	}
-	if err := ioutil.WriteFile(absPath, []byte(p.Body), os.ModePerm); err != nil {
+	if err := ioutil.WriteFile(absPath, []byte(p.Body), 0600); err != nil {
 		return err
 	}
 	fmt.Println("Made it to after write")
@@ -193,7 +216,7 @@ func ensureDirExists(absPath string) error {
 	if ok {
 		return nil
 	}
-	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+	if err := os.MkdirAll(dir, 0600); err != nil {
 		return err
 	}
 	return nil

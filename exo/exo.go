@@ -15,9 +15,26 @@ type ListResponse struct {
 	Prefixes []string `json:"prefixes"`
 }
 
+// SearchResponse is a collection of results found when grepping
+type SearchResponse struct {
+	Results []SearchResult `json:"results"`
+}
+
+// SearchRequest is the request object for searching through wiki
+type SearchRequest struct {
+	Query string `json:"query"`
+}
+
 // Page is a page in our wiki
 type Page struct {
 	Prefix string
 	Body   string
 	Title  string
+}
+
+// SearchResult is a representation of git grepping for content
+type SearchResult struct {
+	Page       string `json:"page"`
+	Content    string `json:"content"`
+	LineNumber string `json:"line_number"`
 }
