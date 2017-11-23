@@ -56,7 +56,7 @@ exocortex.json       <-- wiki globals
 
 ## Configuration
 
-* `pushInterval` - time between remote pushes if remote is set up
+* `syncInterval` - time between remote pushes if remote is set up
 * `repository` - absolute path to where the repo for this wiki lives
 * `title` - base title for the wiki
 * `remote` - where to push the wiki to on the interval
@@ -68,7 +68,9 @@ exocortex.json       <-- wiki globals
 
 | Method | Path | Description |
 |--------|------|-------------|
-| **POST** | `/session` | TODO. sign in local user (match against white list of email/passes) |
+| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
+| **GET** | `/api/settings` | TODO. returns global wiki settings |
+| **POST** | `/api/settings` | TODO. sets settings |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
 | **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
