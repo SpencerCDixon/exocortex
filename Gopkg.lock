@@ -74,6 +74,24 @@
   version = "v1.7.3"
 
 [[projects]]
+  name = "github.com/mattn/go-colorable"
+  packages = ["."]
+  revision = "167de6bfdfba052fa6b2d3664c8f5272e23c9072"
+  version = "v0.0.9"
+
+[[projects]]
+  name = "github.com/mattn/go-isatty"
+  packages = ["."]
+  revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
+  version = "v0.0.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mgutz/ansi"
+  packages = ["."]
+  revision = "9520e82c474b0a04dd04f8a40959027271bab992"
+
+[[projects]]
   branch = "master"
   name = "github.com/mitchellh/go-homedir"
   packages = ["."]
@@ -134,6 +152,12 @@
   version = "v1.0.0"
 
 [[projects]]
+  name = "github.com/tj/survey"
+  packages = [".","core","terminal"]
+  revision = "e57b07d19e552706bbdd0c18911f97e3a3fa9d14"
+  version = "v2.0.4"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
@@ -154,6 +178,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f2c77401a5a96fd63cba0d5ad3406a0e534bfbe0166b2c90d6a5bf1ec638f6c9"
+  inputs-digest = "3b2edc2c27530e31ffdae1bb46e92702a27831a4545cb3ff30f4f2a7d6f0b612"
   solver-name = "gps-cdcl"
   solver-version = 1

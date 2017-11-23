@@ -5,8 +5,9 @@ deps:
 	@dep ensure
 
 build: deps
-	packr
-	go build
-	packr clean
+	packr build
+
+install: deps
+	packr install
 
 .TARGET: build deps

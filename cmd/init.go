@@ -23,7 +23,6 @@ var initCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err.Error())
 		}
-		log.Info(cwd)
 		configPath := filepath.Join(cwd, "exocortex.json")
 
 		if ok, _ := util.Exists(configPath); ok {
