@@ -24,7 +24,7 @@ class SearchPage extends Component {
   search = value => {
     Api.search(value)
       .then(({ data }) => {
-        this.setState({ loading: false, results: data.results });
+        this.setState({ loading: false, results: data.results || [] });
       })
       .catch(() => {
         this.setState({ loading: false });
@@ -36,11 +36,14 @@ class SearchPage extends Component {
       <ContentWrapper>
         <h1>Search Results</h1>
         <Flex column>
+          {this.state.loading && <p>Loading...</p>}
           {this.state.results.map(r => (
-            <Box my={2}>
-              <WikiLink href={r.page}>{r.page}</WikiLink> - {r.content}
+            <Box my={1}>
+              <WikiLink href={r.page}>{r.page}</WikiLink> | {r.line_number} |{' '}
+              {r.content}
             </Box>
           ))}
+          {this.state.results.length === 0 && <p>Not results found.</p>}
         </Flex>
       </ContentWrapper>
     );

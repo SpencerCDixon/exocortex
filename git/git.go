@@ -112,6 +112,7 @@ func (gs *Store) View(path string) (string, error) {
 	return string(body), nil
 }
 
+// Grep allows us to search for a pattern in the wiki
 func (gs *Store) Grep(pattern string) ([]exo.SearchResult, error) {
 	str, err := gs.exec("grep", "--no-color", "-F", "-n", "-i", "-I", pattern)
 	if err != nil {
