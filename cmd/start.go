@@ -11,6 +11,7 @@ import (
 	"github.com/gobuffalo/packr"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"github.com/spencercdixon/exocortex/config"
 	"github.com/spencercdixon/exocortex/wiki"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -25,6 +26,16 @@ var startCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Boot up the wiki for a specific repository",
 	Run: func(cmd *cobra.Command, args []string) {
+		// Boot up config
+		var configPath string
+		if len(args[0]) == 0 {
+			configPath = "."
+		} else {
+			configPath = args[0]
+		}
+		config.New(configPath)
+
+		// Root router
 		router := mux.NewRouter()
 
 		// Mount wiki under '/api'

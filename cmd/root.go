@@ -7,13 +7,14 @@ import (
 
 	"github.com/apex/log"
 	"github.com/apex/log/handlers/cli"
-	"github.com/spencercdixon/exocortex/config"
 	"github.com/spf13/cobra"
 )
 
 var cfgFile string
 var debug bool
 
+// RootCmd is our base 'exo' command used to do utility tasks and start the wiki
+// server
 var RootCmd = &cobra.Command{
 	Use:   "exo",
 	Short: "An extension of your brain. A modern wiki for the modern developer.",
@@ -28,7 +29,6 @@ func Execute() {
 
 func init() {
 	// Parse global flags
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file for wiki")
 	RootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "set logging to debug level")
 
 	// Initialize configuration and logger
@@ -41,6 +41,4 @@ func initConfig() {
 	if debug {
 		log.SetLevel(log.DebugLevel)
 	}
-
-	config.New(cfgFile)
 }

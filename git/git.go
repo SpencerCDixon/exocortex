@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -12,6 +11,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spencercdixon/exocortex/exo"
+	"github.com/spencercdixon/exocortex/util"
 )
 
 // PrefixIgnore are files that won't get returned when querying for list
@@ -103,7 +103,7 @@ func (gs *Store) CurrentUser() (string, error) {
 
 // View the contents of a specific path
 func (gs *Store) View(path string) (string, error) {
-	resolvedPath := filepath.Join(gs.Repo, ensureMDExtension(path))
+	resolvedPath := filepath.Join(gs.Repo, util.EnsureMDPath(path))
 
 	body, err := ioutil.ReadFile(resolvedPath)
 	if err != nil {
@@ -137,9 +137,9 @@ func (gs *Store) Grep(pattern string) ([]exo.SearchResult, error) {
 
 // WritePage writes and commits a page object to the wiki
 func (gs *Store) WritePage(p *exo.Page) error {
-	path := ensureMDExtension(p.Prefix)
+	path := util.EnsureMDPath(p.Prefix)
 	absPath := filepath.Join(gs.Repo, path)
-	if err := ensureDirExists(absPath); err != nil {
+	if err := util.EnsureDirExists(absPath); err != nil {
 		return err
 	}
 	if err := ioutil.WriteFile(absPath, []byte(p.Body), 0600); err != nil {
@@ -166,11 +166,11 @@ func (gs *Store) EnsureValidEnvironment() error {
 		return errors.New("missing git version")
 	}
 
-	repoExists, err := exists(gs.Repo)
+	repoExists, err := util.Exists(gs.Repo)
 	if err != nil {
 		return err
 	}
-	dotGitExists, err := exists(filepath.Join(gs.Repo, ".git"))
+	dotGitExists, err := util.Exists(filepath.Join(gs.Repo, ".git"))
 	if err != nil {
 		return err
 	}
@@ -186,39 +186,4 @@ func filterPrefixes(rawList string) []string {
 	return filter(prefixes, func(p string) bool {
 		return !include(PrefixIgnore, p)
 	})
-}
-
-func exists(path string) (bool, error) {
-	_, err := os.Stat(path)
-	if err == nil {
-		return true, nil
-	}
-	if os.IsNotExist(err) {
-		return false, nil
-	}
-	return true, err
-}
-
-func ensureMDExtension(path string) string {
-	ext := filepath.Ext(path)
-	if ext == ".md" {
-		return path
-	} else {
-		return path + ".md"
-	}
-}
-
-func ensureDirExists(absPath string) error {
-	dir := filepath.Dir(absPath)
-	ok, err := exists(dir)
-	if err != nil {
-		return err
-	}
-	if ok {
-		return nil
-	}
-	if err := os.MkdirAll(dir, 0600); err != nil {
-		return err
-	}
-	return nil
 }
