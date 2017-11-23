@@ -3,6 +3,7 @@ package wiki
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
@@ -13,6 +14,11 @@ func (wiki *wiki) handleList(w http.ResponseWriter, r *http.Request) {
 	results, err := wiki.store.LS()
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
+	}
+
+	// remove the .md extensions since it's implied in our wiki
+	for i, r := range results {
+		results[i] = strings.Replace(r, ".md", "", -1)
 	}
 
 	res := &exo.ListResponse{Prefixes: results}
