@@ -41,10 +41,12 @@ There are a number of hot keys to make editing and viewing pages a better experi
       </p>
 
       <table>
-        <CommandRow mod="mod" btn="?" desc="Toggle help" />
-        <CommandRow mod="mod" btn="p" desc="Preview mode" />
-        <CommandRow mod="mod" btn="(i|e)" desc="Edit/Insert mode" />
-        <CommandRow mod="mod" btn="z" desc="Zen mode" />
+        <tbody>
+          <CommandRow mod="mod" btn="?" desc="Toggle help" />
+          <CommandRow mod="mod" btn="p" desc="Preview mode" />
+          <CommandRow mod="mod" btn="(i|e)" desc="Edit/Insert mode" />
+          <CommandRow mod="mod" btn="z" desc="Zen mode" />
+        </tbody>
       </table>
     </div>
   );
