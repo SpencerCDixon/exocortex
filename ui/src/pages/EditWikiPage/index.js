@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
 import Editor from 'components/Editor';
 

@@ -35,14 +35,14 @@ export default function withWikiPage(BaseComponent) {
         Api.view(nextProps.match.params.page)
           .then(({ data }) => this.setState({ content: data.body }))
           .catch(() => {
-            history.push(`/wiki/new/${page}`);
+            history.push(`/wiki/new/${nextProps.match.params.page}`);
           });
       }
     }
 
     handleSave = newContent => {
       const { match: { params: { page } } } = this.props;
-      Api.save(page, newContent).then(() => {});
+      Api.save(page, newContent)
     };
 
     handleEdit = () => {

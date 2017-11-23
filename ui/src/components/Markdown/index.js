@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import remark from 'remark';
 import reactRenderer from 'remark-react';
+// import toc from 'remark-toc';
+// import slug from 'remark-slug';
+// import headers from 'remark-autolink-headings';
 import RemarkLowlight from 'remark-react-lowlight';
 import merge from 'deepmerge';
 import github from 'hast-util-sanitize/lib/github.json';
-import { Flex } from 'reflexbox';
 
 // Custom Overrides
 import WikiLink from 'components/WikiLink';
@@ -31,24 +33,28 @@ class Markdown extends Component {
   };
 
   render() {
-    return remark()
-      .use(reactRenderer, {
-        sanitize: schema,
-        remarkReactComponents: {
-          a: WikiLink,
-          code: RemarkLowlight({
-            js,
-            sql,
-            ruby,
-            xml,
-            python,
-            java,
-            css,
-            elm,
-          }),
-        },
-      })
-      .processSync(this.props.children).contents;
+    return (
+      remark()
+        // .use(toc)
+        // .use(slug)
+        .use(reactRenderer, {
+          sanitize: schema,
+          remarkReactComponents: {
+            a: WikiLink,
+            code: RemarkLowlight({
+              js,
+              sql,
+              ruby,
+              xml,
+              python,
+              java,
+              css,
+              elm,
+            }),
+          },
+        })
+        .processSync(this.props.children).contents
+    );
   }
 }
 

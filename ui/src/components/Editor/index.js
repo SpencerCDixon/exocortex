@@ -1,7 +1,7 @@
+// eslint-disable
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Editor as SlateEditor } from 'slate-react';
-import { Value } from 'slate';
 import Plain from 'slate-plain-serializer';
 import Prism from 'prismjs';
 import Markdown from 'components/Markdown';
@@ -9,7 +9,6 @@ import ContentWrapper from 'components/ContentWrapper';
 import EditToolbar from 'components/EditToolbar';
 import PreviewToolbar from 'components/PreviewToolbar';
 import { Flex, Box } from 'reflexbox';
-import * as Api from 'util/api';
 
 const plugins = [];
 
@@ -64,6 +63,43 @@ class Editor extends Component {
       }
     }
   };
+
+  render() {
+    const { value, raw, preview } = this.state;
+
+    return (
+      <Flex>
+        <Flex w={preview ? '50vw' : '100%'}>
+          <ContentWrapper>
+            <EditToolbar onClose={this.props.onView} onSave={this.handleSave} />
+            <SlateEditor
+              style={{
+                margin: '0 auto',
+                minWidth: preview ? '90%' : '60%',
+                minHeight: '100%',
+              }}
+              onKeyDown={this.onKeyDown}
+              value={value}
+              onChange={this.onChange}
+              plugins={plugins}
+              renderMark={this.renderMark}
+              decorateNode={this.decorateNode}
+              autoFocus
+              spellCheck
+            />
+          </ContentWrapper>
+        </Flex>
+        {preview && (
+          <Flex w="50vw">
+            <ContentWrapper>
+              <PreviewToolbar onClose={this.handlePreviewToggle} />
+              <Markdown>{raw}</Markdown>
+            </ContentWrapper>
+          </Flex>
+        )}
+      </Flex>
+    );
+  }
 
   renderMark = props => {
     const { children, mark } = props;
@@ -121,7 +157,7 @@ class Editor extends Component {
   };
 
   decorateNode(node) {
-    if (node.kind != 'block') return;
+    if (node.kind !== 'block') return;
 
     const string = node.text;
     const texts = node.getTexts().toArray();
@@ -179,43 +215,6 @@ class Editor extends Component {
     }
 
     return decorations;
-  }
-
-  render() {
-    const { value, raw, preview } = this.state;
-
-    return (
-      <Flex>
-        <Flex w={preview ? '50vw' : '100%'}>
-          <ContentWrapper>
-            <EditToolbar onClose={this.props.onView} onSave={this.handleSave} />
-            <SlateEditor
-              style={{
-                margin: '0 auto',
-                minWidth: preview ? '90%' : '60%',
-                minHeight: '100%',
-              }}
-              onKeyDown={this.onKeyDown}
-              value={value}
-              onChange={this.onChange}
-              plugins={plugins}
-              renderMark={this.renderMark}
-              decorateNode={this.decorateNode}
-              autoFocus
-              spellCheck
-            />
-          </ContentWrapper>
-        </Flex>
-        {preview && (
-          <Flex w="50vw">
-            <ContentWrapper>
-              <PreviewToolbar onClose={this.handlePreviewToggle} />
-              <Markdown>{raw}</Markdown>
-            </ContentWrapper>
-          </Flex>
-        )}
-      </Flex>
-    );
   }
 }
 

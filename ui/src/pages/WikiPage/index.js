@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Markdown from 'components/Markdown';
-import { Flex, Box } from 'reflexbox';
+import { Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
 import isHotkey from 'is-hotkey';
 import ContentWrapper from 'components/ContentWrapper';

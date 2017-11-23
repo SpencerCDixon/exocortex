@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Flex, Box } from 'reflexbox';
 import NavLink from 'components/NavLink';
 import Search from 'components/Search';
