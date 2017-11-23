@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import remark from 'remark';
 import reactRenderer from 'remark-react';
-// import toc from 'remark-toc';
-// import slug from 'remark-slug';
-// import headers from 'remark-autolink-headings';
+import toc from 'remark-toc';
+import slug from 'remark-slug';
+import autoLinkHeadings from 'remark-autolink-headings';
 import RemarkLowlight from 'remark-react-lowlight';
 import merge from 'deepmerge';
 import github from 'hast-util-sanitize/lib/github.json';
@@ -25,7 +25,10 @@ import elm from 'highlight.js/lib/languages/elm';
 import 'highlight.js/styles/tomorrow-night.css';
 
 // Allow the 'className' prop to pass through
-const schema = merge(github, { attributes: { '*': ['className'] } });
+const schema = merge(github, {
+  clobberPrefix: '',
+  attributes: { '*': ['className'] },
+});
 
 class Markdown extends Component {
   static propTypes = {
@@ -35,8 +38,9 @@ class Markdown extends Component {
   render() {
     return (
       remark()
-        // .use(toc)
-        // .use(slug)
+        .use(slug)
+        // .use(autoLinkHeadings)
+        .use(toc)
         .use(reactRenderer, {
           sanitize: schema,
           remarkReactComponents: {
