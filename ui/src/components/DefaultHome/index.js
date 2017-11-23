@@ -6,10 +6,10 @@ const Td = styled.td`
   text-align: ${p => (p.align ? p.align : 'center')};
 `;
 
-const CommandRow = ({ cmd, desc }) => (
+const CommandRow = ({ mod, btn, desc }) => (
   <tr>
     <Td>
-      <kbd>{cmd}</kbd>
+      <kbd>{mod}</kbd> + <kbd>{btn}</kbd>
     </Td>
     <Td align="left">{desc}</Td>
   </tr>
@@ -41,10 +41,10 @@ There are a number of hot keys to make editing and viewing pages a better experi
       </p>
 
       <table>
-        <CommandRow cmd="mod + ?" desc="Toggle help" />
-        <CommandRow cmd="mod + p" desc="Preview mode" />
-        <CommandRow cmd="mod + (i|e)" desc="Edit/Insert mode" />
-        <CommandRow cmd="mod + z" desc="Zen mode" />
+        <CommandRow mod="mod" btn="?" desc="Toggle help" />
+        <CommandRow mod="mod" btn="p" desc="Preview mode" />
+        <CommandRow mod="mod" btn="(i|e)" desc="Edit/Insert mode" />
+        <CommandRow mod="mod" btn="z" desc="Zen mode" />
       </table>
     </div>
   );
