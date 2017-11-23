@@ -16,3 +16,7 @@ export function view(page) {
 export function save(page, content) {
   return client.post(`/wiki/${page}`, { body: content });
 }
+
+export function search(query) {
+  return client.post(`/search`, { query });
+}

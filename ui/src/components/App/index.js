@@ -10,6 +10,7 @@ import WikiPage from 'pages/WikiPage';
 import NewWikiPage from 'pages/NewWikiPage';
 import EditWikiPage from 'pages/EditWikiPage';
 import SettingsPage from 'pages/SettingsPage';
+import SearchPage from 'pages/SearchPage';
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/wiki/new/:page*" component={NewWikiPage} />
           <Route path="/wiki/edit/:page*" component={EditWikiPage} />
           <Route path="/wiki/:page*" component={WikiPage} />
+          <Route path="/search" component={SearchPage} />
           <Redirect to="/wiki" />
         </Switch>
         <HotkeyHelp />

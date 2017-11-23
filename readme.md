@@ -71,6 +71,7 @@ exocortex.json       <-- wiki globals
 | **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
 | **GET** | `/api/settings` | TODO. returns global wiki settings |
 | **POST** | `/api/settings` | TODO. sets settings |
+| **POST** | `/api/search` | search through wiki for a query |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
 | **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
@@ -80,6 +81,7 @@ exocortex.json       <-- wiki globals
 ## UI Routes
 | Route | Description |
 |-------|-------------|
+| `/search`| Renders search results |
 | `/wiki/:page-name` | Renders markdown of that path |
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |

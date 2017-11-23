@@ -23,7 +23,15 @@ const Settings = styled(SettingsIcon)`
 `;
 
 class NavBar extends Component {
+  state = { search: '' };
+
   handleSettings = () => this.props.history.push(`/wiki/settings`);
+  updateSearch = e => this.setState({ search: e.target.value });
+  handleEnter = e => {
+    if (e.keyCode === 13) {
+      this.props.history.push(`/search?query=${this.state.search}`);
+    }
+  };
 
   render() {
     return (
@@ -32,7 +40,11 @@ class NavBar extends Component {
 
         <Flex ml="auto">
           <Flex justify="center" align="center" mr={2}>
-            <Search placeholder="Search Wiki..." />
+            <Search
+              onChange={this.updateSearch}
+              onKeyDown={this.handleEnter}
+              placeholder="Search Wiki..."
+            />
             <Box ml={2}>
               <Settings onClick={this.handleSettings} />
             </Box>

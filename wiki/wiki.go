@@ -37,7 +37,7 @@ func New() http.Handler {
 func (wiki *wiki) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleView).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleWrite).Methods("POST")
-	wiki.router.HandleFunc("/search", wiki.handleSearch).Methods("GET")
+	wiki.router.HandleFunc("/search", wiki.handleSearch).Methods("POST")
 	wiki.router.HandleFunc("/", wiki.handleList)
 	wiki.router.ServeHTTP(w, r)
 }
