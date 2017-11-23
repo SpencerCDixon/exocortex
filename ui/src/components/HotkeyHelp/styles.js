@@ -25,13 +25,13 @@ export const Wrapper = styled.div`
 `;
 
 export const Helper = styled.div`
+  background: white;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09), 0 4px 40px rgba(0, 0, 0, 0.24);
   min-width: 200px;
   min-height: 200px;
   margin-bottom: 20px;
   padding: 15px;
-  z-index: 10000;
   transition: all 0.2s ease-in-out;
   transform: ${p => (p.open ? 'scale(1)' : 'scale(0.8)')};
   opacity: ${p => (p.open ? 1 : 0)};
