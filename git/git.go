@@ -112,11 +112,15 @@ func (gs *Store) View(path string) (string, error) {
 }
 
 func (gs *Store) WritePage(p *exo.Page) error {
-	path := p.Prefix + ".md"
+	path := ensureMDExtension(p.Prefix)
 	absPath := filepath.Join(gs.Repo, path)
-	if err := ioutil.WriteFile(absPath, []byte(p.Body), 0600); err != nil {
+	if err := ensureDirExists(absPath); err != nil {
 		return err
 	}
+	if err := ioutil.WriteFile(absPath, []byte(p.Body), os.ModePerm); err != nil {
+		return err
+	}
+	fmt.Println("Made it to after write")
 	if _, err := gs.Add(path, ""); err != nil {
 		return err
 	}
@@ -177,4 +181,19 @@ func ensureMDExtension(path string) string {
 	} else {
 		return path + ".md"
 	}
+}
+
+func ensureDirExists(absPath string) error {
+	dir := filepath.Dir(absPath)
+	ok, err := exists(dir)
+	if err != nil {
+		return err
+	}
+	if ok {
+		return nil
+	}
+	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+		return err
+	}
+	return nil
 }

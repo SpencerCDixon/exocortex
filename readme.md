@@ -51,6 +51,7 @@ exocortex.json       <-- wiki globals
 
 * `new` - creates a new directory with an `exocortex.json` file
 * `start` - boots up the wiki server 
+* `init` - creates a templated `exocortex.json` file based on sensible defaults
 * `exo` - alias for start
 
 ## Configuration
@@ -154,11 +155,13 @@ TODO: more to come...
 ## TODO
 
 - [ ] when a page doesn't exist redirect to an 'new' page in the UI
-- [ ] allow exo root command to look in local directory for config file
+- [ ] allow exo root command to look in local2 directory for config file
 - [ ] change --config flag to instead take it's location as an arg
 - [ ] set up background syncing 
 - [ ] hot keys in frontend
 - [ ] zen mode editing
+- [ ] expose endpoint for setting style theme
+- [ ] exo init command which just brings in the config file but doesn't create new dir
 
 
 [resolve path](https://github.com/mjackson/resolve-pathname)

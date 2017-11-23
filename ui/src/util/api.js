@@ -12,3 +12,7 @@ export function list() {
 export function view(page) {
   return client.get(`/wiki/${page}`);
 }
+
+export function save(page, content) {
+  return client.post(`/wiki/${page}`, { body: content });
+}

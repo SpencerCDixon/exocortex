@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Markdown from 'components/Markdown';
-import { Flex, Box } from 'reflexbox';
+import { Box } from 'reflexbox';
 import withWikiPage from 'util/withWikiPage';
-// import { withRouter } from 'react-router-dom';
-// import * as Api from 'util/api';
+import isHotkey from 'is-hotkey';
+import ContentWrapper from 'components/ContentWrapper';
+import ViewToolbar from 'components/ViewToolbar';
 
-const style = {
-  width: '100%',
-};
+const isInsert = isHotkey('mod+i');
+const isEdit = isHotkey('mod+e');
 
 class WikiPage extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEdit);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEdit);
+  }
+
+  handleEdit = e => {
+    if (isEdit(e) || isInsert(e)) {
+      this.props.onEdit();
+    }
+  };
+
   render() {
     const { onEdit, content } = this.props;
     return (
-      <Flex column m="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
-        <Box>
-          <button onClick={onEdit}>edit</button>
+      <ContentWrapper>
+        <Box pb={2} px={2}>
+          <ViewToolbar onEdit={onEdit} />
         </Box>
-        <div>
-          <Markdown>{content}</Markdown>
-        </div>
-      </Flex>
+        <Markdown>{content}</Markdown>
+      </ContentWrapper>
     );
   }
 }

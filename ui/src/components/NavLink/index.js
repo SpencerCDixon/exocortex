@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 import { Box } from 'reflexbox';
+import { colors } from 'style';
+import styled from 'styled-components';
 
-const style = {
-  color: 'white',
-  textDecoration: 'none',
-};
+const activeClassName = 'nav-item-active';
+
+const StyledNavItem = styled(RouterNavLink).attrs({
+  activeClassName,
+})`
+  text-decoration: none;
+  color: ${colors.gray2};
+
+  &:hover {
+    color: white;
+  }
+  &.${activeClassName} {
+    // color: white;
+  }
+`;
 
 class NavLink extends Component {
   static propTypes = {
     to: PropTypes.string,
-  }
+  };
 
   render() {
     const { children, to } = this.props;
 
     return (
       <Box p={2}>
-        <Link style={style} to={to}>
+        <StyledNavItem activeClassName={activeClassName} to={to}>
           {children}
-        </Link>
+        </StyledNavItem>
       </Box>
     );
   }

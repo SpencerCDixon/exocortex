@@ -35,10 +35,15 @@ export default function withWikiPage(BaseComponent) {
         Api.view(nextProps.match.params.page)
           .then(({ data }) => this.setState({ content: data.body }))
           .catch(() => {
-            history.push(`/wiki/new/${page}`);
+            history.push(`/wiki/new/${nextProps.match.params.page}`);
           });
       }
     }
+
+    handleSave = newContent => {
+      const { match: { params: { page } } } = this.props;
+      Api.save(page, newContent)
+    };
 
     handleEdit = () => {
       const { history, match: { params: { page } } } = this.props;
@@ -46,12 +51,21 @@ export default function withWikiPage(BaseComponent) {
       history.push(editLoc);
     };
 
+    handleView = () => {
+      const { history, match: { params: { page } } } = this.props;
+      history.push(`/wiki/${page}`);
+    };
+
     render() {
+      const { match: { params: { page } } } = this.props;
       if (this.state.content) {
         return (
           <BaseComponent
+            page={page}
             content={this.state.content}
             onEdit={this.handleEdit}
+            onSave={this.handleSave}
+            onView={this.handleView}
             {...this.props}
           />
         );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import path from 'path';
 
 const style = {
@@ -10,10 +10,14 @@ const style = {
 class WikiLink extends Component {
   render() {
     const { href, children } = this.props;
+    const isExternal = href.indexOf('http') > -1;
     const resolved = path.resolve('/wiki/', href);
 
     return (
-      <Link style={style} to={resolved}>
+      <Link
+        target={isExternal ? '_blank' : ''}
+        style={style}
+        to={isExternal ? href : resolved}>
         {children}
       </Link>
     );
