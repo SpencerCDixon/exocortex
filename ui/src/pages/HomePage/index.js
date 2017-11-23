@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import * as Api from 'util/api';
-import { Box, Flex } from 'reflexbox';
-import WikiLink from 'components/WikiLink';
+import { withRouter } from 'react-router';
+import Markdown from 'components/Markdown';
+import DefaultHome from 'components/DefaultHome';
+import ContentWrapper from 'components/ContentWrapper';
 
 class HomePage extends Component {
-  state = { data: [] };
+  state = { loading: true };
 
   componentDidMount() {
-    Api.list().then(({ data }) => {
-      this.setState({ data: data.prefixes });
-    });
+    const { history } = this.props;
+    Api.view('home.md')
+      .then(({ status, data }) => {
+        if (status === 200) {
+          history.push(`/wiki/home`);
+        }
+        this.setState({ loading: false });
+      })
+      .catch(() => this.setState({ loading: false }));
   }
 
   render() {
+    const { loading, data } = this.state;
+    if (loading) return null;
+
     return (
-      <Flex column m="auto" w={[3 / 4, 3 / 4, 3 / 4, 3 / 4]}>
-        {this.state.data.map(link => (
-          <Box key={link} my={2}>
-            <WikiLink href={link}>{link}</WikiLink>
-          </Box>
-        ))}
-      </Flex>
+      <ContentWrapper>
+        <DefaultHome />
+      </ContentWrapper>
     );
   }
 }
 
-export default HomePage;
+export default withRouter(HomePage);

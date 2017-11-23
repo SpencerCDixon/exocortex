@@ -61,9 +61,10 @@ func (gs *Store) Commit(path, msg string) (string, error) {
 			author = "Unknown"
 		}
 		msg = fmt.Sprintf(
-			"exo: Update on %s by %s",
-			time.Now().Format(time.UnixDate),
+			"exo: Updated %s by %s at %s",
+			path,
 			author,
+			time.Now().Format(time.Kitchen),
 		)
 	}
 

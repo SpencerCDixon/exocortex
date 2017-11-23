@@ -13,6 +13,7 @@
 - [ ] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
 - [ ] allow override of code block coloring based on highlight.js
 - [ ] change hot key advice based on what mode the user is in
+- [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
 
 
 https://github.com/ianstormtaylor/is-hotkey

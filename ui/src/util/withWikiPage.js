@@ -42,7 +42,7 @@ export default function withWikiPage(BaseComponent) {
 
     handleSave = newContent => {
       const { match: { params: { page } } } = this.props;
-      Api.save(page, newContent)
+      Api.save(page, newContent);
     };
 
     handleEdit = () => {
@@ -72,7 +72,7 @@ export default function withWikiPage(BaseComponent) {
       }
 
       // TODO: have a real spinner..
-      return <span>Loading...</span>;
+      return null;
     }
   }
   // Wrap in router
