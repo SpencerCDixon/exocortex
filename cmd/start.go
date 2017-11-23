@@ -28,7 +28,7 @@ var startCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// Boot up config
 		var configPath string
-		if len(args[0]) == 0 {
+		if len(args) < 1 {
 			configPath = "."
 		} else {
 			configPath = args[0]

@@ -48,6 +48,21 @@ func (gs *Store) exec(commands ...string) (string, error) {
 	return out.String(), nil
 }
 
+// Init initializes a git repo if one doesn't already exist
+func (gs *Store) Init() error {
+	gitDir := filepath.Join(gs.Repo, ".git")
+	ok, err := util.Exists(gitDir)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		_, err := gs.exec("init")
+		return err
+	} else {
+		return errors.New("Git repo already exists")
+	}
+}
+
 // Status returns the status of the git repo
 func (gs *Store) Status() (string, error) {
 	return gs.exec("status", "-v")
