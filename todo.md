@@ -36,6 +36,7 @@
 - [ ] diff view of files
 - [ ] image support
 - [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
+- [ ] change home icon to be a brain
 On Airplane:
 - [ ] set up background syncing 
 - [ ] create 'new' command that bootstraps an empty wiki
