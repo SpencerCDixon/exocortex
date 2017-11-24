@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/apex/log"
 	"github.com/pkg/errors"
 	"github.com/spencercdixon/exocortex/exo"
 	"github.com/spencercdixon/exocortex/util"
@@ -119,8 +120,10 @@ func (gs *Store) CurrentUser() (string, error) {
 // View the contents of a specific path
 func (gs *Store) View(path string) (string, error) {
 	resolvedPath := filepath.Join(gs.Repo, util.EnsureMDPath(path))
+	log.Debugf("Resolved path: %s", resolvedPath)
 
 	body, err := ioutil.ReadFile(resolvedPath)
+
 	if err != nil {
 		return "", err
 	}

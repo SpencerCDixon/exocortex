@@ -55,6 +55,7 @@ func (_ *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
 	jsonData, err := json.Marshal(data)
 
 	if err != nil {
+		log.Debugf("Error marshalling JSON: %s", err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}

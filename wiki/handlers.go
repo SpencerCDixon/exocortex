@@ -30,14 +30,17 @@ func (wiki *wiki) handleView(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	body, err := wiki.store.View(vars["page"])
-	log.Debug(err.Error())
+	res := &exo.PageResponse{}
+
 	if err != nil {
-		res := &exo.PageResponse{Body: ""}
+		res.Body = ""
 		wiki.renderJSON(w, http.StatusNotFound, res)
 		return
 	}
-	res := &exo.PageResponse{Body: body}
+
+	res.Body = body
 	wiki.renderJSON(w, http.StatusOK, res)
+	return
 }
 
 func (wiki *wiki) handleWrite(w http.ResponseWriter, r *http.Request) {
