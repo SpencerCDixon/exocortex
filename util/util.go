@@ -1,8 +1,12 @@
 package util
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	"github.com/pkg/errors"
 )
 
 // EnsureMDPath takes in a path and returns it with a proper .md extension
@@ -39,10 +43,24 @@ func EnsureDirExists(path string) error {
 	return nil
 }
 
+// ReadFileJSON reads json from the given path.
+func ReadFileJSON(path string, v interface{}) error {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
+		return errors.Wrap(err, "reading")
+	}
+
+	if err := json.Unmarshal(b, &v); err != nil {
+		return errors.Wrap(err, "unmarshaling")
+	}
+
+	return nil
+}
+
 func ensureExtension(ext string) func(string) string {
 	return func(path string) string {
-		ext := filepath.Ext(path)
-		if ext == ext {
+		e := filepath.Ext(path)
+		if e == ext {
 			return path
 		} else {
 			return path + ext

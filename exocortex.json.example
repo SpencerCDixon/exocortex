@@ -1,9 +1,0 @@
-{
-  "server": {
-    "host": "localhost",
-    "port": 1234
-  },
-  "pushInterval": 30,
-  "title": "My Wiki",
-  "remote": "origin"
-}

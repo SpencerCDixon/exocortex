@@ -159,30 +159,36 @@ TODO: more to come...
 ## TODO
 
 - [x] when a page doesn't exist redirect to an 'new' page in the UI
-- [ ] allow exo root command to look in local2 directory for config file
+- [x] allow exo root command to look in local directory for config file
 - [x] change --config flag to instead take it's location as an arg
-- [ ] set up background syncing 
 - [x] hot keys in frontend
-- [ ] zen mode editing
-- [ ] expose endpoint for setting style theme
 - [x] exo init command which just brings in the config file but doesn't create new dir
-- [ ] add state management
 - [x] add style theme
 - [x] extract withWikiPage
-- [ ] set up all primitive components
 - [x] add the hot keys for different modes
+- [x] find good icon set to use
+- [ ] zen mode editing
+- [ ] expose endpoint for setting style theme
+- [ ] add state management
+- [ ] set up all primitive components
 - [ ] change color of top bar based on different modes like vim
 - [ ] can I get vim text editing??
 - [ ] create local cache of pages that are loaded
 - [ ] prefetch pages in same prefix so they're ready to go
-- [x] find good icon set to use
 - [ ] come up with a better code highlighting solution
 - [ ] add ability to customize font theme based on: https://github.com/KyleAMathews/typography.js (expose API endpoint)
 - [ ] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
 - [ ] allow override of code block coloring based on highlight.js
 - [ ] change hot key advice based on what mode the user is in
-- [ ] create 'new' command that bootstraps an empty wiki
 - [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
+- [ ] add DELETE page 
+- [ ] see past revisions and revert back to specific commit
+- [ ] diff view of files
+- [ ] image support
+
+On Airplane:
+- [ ] set up background syncing 
+- [ ] create 'new' command that bootstraps an empty wiki
 
 
 [resolve path](https://github.com/mjackson/resolve-pathname)

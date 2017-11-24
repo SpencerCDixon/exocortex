@@ -1,7 +1,6 @@
 package wiki
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -13,7 +12,9 @@ import (
 func (wiki *wiki) handleList(w http.ResponseWriter, r *http.Request) {
 	results, err := wiki.store.LS()
 	if err != nil {
-		fmt.Fprintf(w, err.Error())
+		log.Debug(err.Error())
+		http.Error(w, "Unable to list", http.StatusInternalServerError)
+		return
 	}
 
 	// remove the .md extensions since it's implied in our wiki
@@ -29,6 +30,7 @@ func (wiki *wiki) handleView(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	body, err := wiki.store.View(vars["page"])
+	log.Debug(err.Error())
 	if err != nil {
 		res := &exo.PageResponse{Body: ""}
 		wiki.renderJSON(w, http.StatusNotFound, res)
