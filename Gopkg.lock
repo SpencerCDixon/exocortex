@@ -170,6 +170,12 @@
   revision = "88f656faf3f37f690df1a32515b479415e1a6769"
 
 [[projects]]
+  name = "gopkg.in/h2non/filetype.v1"
+  packages = [".","matchers","types"]
+  revision = "22e255079ab40241c671d457081831d972f0436b"
+  version = "v1.0.3"
+
+[[projects]]
   branch = "v2"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
@@ -178,6 +184,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3b2edc2c27530e31ffdae1bb46e92702a27831a4545cb3ff30f4f2a7d6f0b612"
+  inputs-digest = "6180f07b1d71a7430cc660a5af238c702f86a2bff418713c3c00d5d58da69925"
   solver-name = "gps-cdcl"
   solver-version = 1

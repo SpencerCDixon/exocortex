@@ -18,7 +18,7 @@ class ExplorePage extends Component {
       <ContentWrapper>
         <h1>Explore Wiki</h1>
         {this.state.results.map(r => (
-          <Box my={1}>
+          <Box key={r} my={1}>
             <WikiLink href={r}>{r}</WikiLink>
           </Box>
         ))}
