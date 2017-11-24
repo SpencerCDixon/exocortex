@@ -156,13 +156,13 @@ Ensure you have the following installed:
 * `node >6`
 * `yarn`
 
-**Backend**
+**Quick Start**
 
-To work on the backend you'll need a sample wiki to point to.
-TODO: provide a link to sample wiki people can clone down.
+Make bootstrap will build the UI, install the Go binary, create an empty example
+wiki, and boot up that example wiki on `localhost:1234`.
 
 ```sh
-make dev
+$ make bootstrap
 ```
 
 **Frontend**

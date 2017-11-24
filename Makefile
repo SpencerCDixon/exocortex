@@ -20,8 +20,14 @@ install: deps
 	@echo
 	@exo
 
+bootstrap: install
+	@echo Creating new example wiki for you
+	@mkdir ../example-wiki && cd ../example-wiki && exo init && git init && git init && git add -A && git commit -m "First Commit"
+	@cd ../example-wiki && exo start . & 
+	@open http://localhost:1234
+
 # Tests the packages
 test: 
 	@go test ./...
 
-.PHONY: build deps install test
+.PHONY: build deps install test bootstrap
