@@ -1,4 +1,4 @@
-![](assets/title.png)
+![Exocortex Logo](assets/title.png)
 
 # Exocortex
 
@@ -13,6 +13,7 @@ A **modern** personal **wiki** that doesn't suck.
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
 * **Prefetch pages for fast response times**
+* [**Automatic Table Of Contents on pages you want**](#auto-toc)
 
 ## Why?
 
@@ -36,25 +37,17 @@ solve these problems.
 3. Must have an `exocortex.json` in your repo.  (`exo init` for existing projects)
 4. Nothing else :smiley:
 
-## Feature Roadmap
+## Installation
 
-Exocortex is missing a lot of useful features that would enable it to go beyond
-just being a local personal wiki.  I developed it while on Thanksgiving vacation
-so there was a limited feature set that I decided to prioritize.  See below for
-a list of enhancements I'd like to add in the coming weeks:
+TODO.
 
-- [ ] User authentication
-- [ ] Better UI customization/overrides
-
-## Folder structure
+### Homebrew
 
 ```sh
-home.md         <-- file used for wiki homepage
-exocortex.json  <-- wiki globals
-.git            <-- data store for the wiki
+$ brew install exocortex
+$ exo new my-first-wiki
+$ cd my-first-wiki && exo start
 ```
-
-That's it!  The rest of your wiki can be structured however you'd like.
 
 ## Commands
 
@@ -69,9 +62,9 @@ That's it!  The rest of your wiki can be structured however you'd like.
 * `repository` - absolute path to where the repo for this wiki lives
 * `title` - base title for the wiki
 * `remote` - where to push the wiki to on the interval
+* `branch` - branch to use when pushing/pulling from remote
 * `server.host` - can be used for OAuth in the future
 * `server.port` - port for the server to listen
-* `anonymousRead` - allow anonymous users to read pages
 
 ## Hotkeys
 
@@ -113,6 +106,31 @@ TODO: more to come...
   </tr>
 </table>
 
+### Auto TOC
+
+**Tip**
+> If you want your pages to have a Table of Contents just add a `# toc` somewhere in the markdown
+
+## Feature Roadmap
+
+Exocortex is missing a lot of useful features that would enable it to go beyond
+just being a local personal wiki.  I developed it while on Thanksgiving vacation
+so there was a limited feature set that I decided to prioritize.  See below for
+a list of enhancements I'd like to add in the coming weeks:
+
+- [ ] User authentication
+- [ ] Better UI customization/overrides
+
+## Folder structure
+
+```sh
+home.md         <-- file used for wiki homepage
+exocortex.json  <-- wiki globals
+.git            <-- data store for the wiki
+```
+
+That's it!  The rest of your wiki can be structured however you'd like.
+
 ## API Routes
 
 | Method | Path | Description |
@@ -135,7 +153,6 @@ TODO: more to come...
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |
 | `/wiki/revisions/:page-name` | See past revisions |
-
 
 ## Why the name Exocortex?
 
