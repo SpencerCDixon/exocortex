@@ -162,10 +162,15 @@ Make bootstrap will build the UI, install the Go binary, create an empty example
 wiki, and boot up that example wiki on `localhost:1234`.
 
 ```sh
+$ mkdir -p $GOPATH/github.com/spencercdixon
+$ cd $GOPATH/github.com/spencercdixon && git clone git@github.com:SpencerCDixon/exocortex.git
+$ cd exocortex
 $ make bootstrap
 ```
 
 **Frontend**
+
+> First make sure you have the backend running on port 1234
 
 To work on the frontend you can run:
 ```sh
