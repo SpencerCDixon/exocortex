@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { isExternalURL } from 'util/path';
 import path from 'path';
 
 const style = {
@@ -21,7 +22,7 @@ class WikiLink extends Component {
     } else {
       resolved = path.resolve('/wiki/', href);
     }
-    const isExternal = href.indexOf('http') > -1;
+    const isExternal = isExternalURL(href);
     const isHash = href[0] === '#';
 
     if (isHash) {

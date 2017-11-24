@@ -1,12 +1,17 @@
 package wiki
 
 import (
+	"bytes"
+	"io"
+	"io/ioutil"
 	"net/http"
+	"path/filepath"
 	"strings"
 
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
 	"github.com/spencercdixon/exocortex/exo"
+	"gopkg.in/h2non/filetype.v1"
 )
 
 func (wiki *wiki) handleList(w http.ResponseWriter, r *http.Request) {
@@ -79,4 +84,28 @@ func (wiki *wiki) handleSearch(w http.ResponseWriter, r *http.Request) {
 	}
 	res := &exo.SearchResponse{Results: results}
 	wiki.renderJSON(w, http.StatusOK, res)
+}
+
+func (wiki *wiki) handleImages(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	imagePath := filepath.Join(wiki.store.Repo, vars["location"])
+	log.Debug(imagePath)
+
+	imgBuf, err := ioutil.ReadFile(imagePath)
+	if err != nil {
+		log.Error(err.Error())
+		http.Error(w, "Error opening image", http.StatusNotFound)
+		return
+	}
+
+	kind, err := filetype.Match(imgBuf[:261])
+	if err != nil {
+		log.Error(err.Error())
+		http.Error(w, "unknown file type", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", kind.MIME.Value)
+	io.Copy(w, bytes.NewReader(imgBuf))
+	return
 }

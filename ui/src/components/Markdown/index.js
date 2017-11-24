@@ -11,6 +11,7 @@ import github from 'hast-util-sanitize/lib/github.json';
 
 // Custom Overrides
 import WikiLink from 'components/WikiLink';
+import WikiImage from 'components/WikiImage';
 
 // TODO: maybe just load all of the langs?
 import js from 'highlight.js/lib/languages/javascript';
@@ -36,29 +37,28 @@ class Markdown extends Component {
   };
 
   render() {
-    return (
-      remark()
-        .use(slug)
-        // .use(autoLinkHeadings)
-        .use(toc)
-        .use(reactRenderer, {
-          sanitize: schema,
-          remarkReactComponents: {
-            a: WikiLink,
-            code: RemarkLowlight({
-              js,
-              sql,
-              ruby,
-              xml,
-              python,
-              java,
-              css,
-              elm,
-            }),
-          },
-        })
-        .processSync(this.props.children).contents
-    );
+    return remark()
+      .use(slug)
+      .use(autoLinkHeadings)
+      .use(toc)
+      .use(reactRenderer, {
+        sanitize: schema,
+        remarkReactComponents: {
+          a: WikiLink,
+          img: WikiImage,
+          code: RemarkLowlight({
+            js,
+            sql,
+            ruby,
+            xml,
+            python,
+            java,
+            css,
+            elm,
+          }),
+        },
+      })
+      .processSync(this.props.children).contents;
   }
 }
 

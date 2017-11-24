@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as Api from 'util/api';
 import { withRouter } from 'react-router';
-import Markdown from 'components/Markdown';
 import DefaultHome from 'components/DefaultHome';
 import ContentWrapper from 'components/ContentWrapper';
 

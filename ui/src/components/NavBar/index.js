@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
-import NavLink from 'components/NavLink';
+// import NavLink from 'components/NavLink';
 import Search from 'components/Search';
-import { baseIcon, colors } from 'style';
+import { colors } from 'style';
 import {
   Home as HomeIcon,
   Map as MapIcon,
