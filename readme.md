@@ -1,13 +1,17 @@
+![](assets/title.png)
+
 # Exocortex
 
 A wiki to act as an extension of your brain.  
 
-## Philosophy
+## Features
 
-Sometimes less is more.
-
-* Less configuration
-* No language runtime required
+* **Language independent**
+* **Easy/zero configuration**
+* **Modern UI**
+* **Git based versioning**
+* **Git based syncing (to GitHub)**
+* **Intuitive hotkeys for better editing UX**
 
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
@@ -29,15 +33,22 @@ solve these problems.
 4. Nothing else.
 
 
+## Feature Roadmap
+
+- [ ] User authentication
+- [ ] Better UI customization/overrides
+
 ## Ideas (in flux...)
 
 ### Folder structure
 
 ```sh
-overrides/index.js   <-- component overrides
-exocortex.json       <-- wiki globals
-.git                 <-- data store for the wiki
+home.md         <-- file used for wiki homepage
+exocortex.json  <-- wiki globals
+.git            <-- data store for the wiki
 ```
+
+That's it!  The rest of your wiki can be structured however you'd like.
 
 #### Sync Pattern
 
@@ -185,6 +196,7 @@ TODO: more to come...
 - [ ] see past revisions and revert back to specific commit
 - [ ] diff view of files
 - [ ] image support
+- [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
 
 On Airplane:
 - [ ] set up background syncing 
