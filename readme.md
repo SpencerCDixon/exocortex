@@ -2,7 +2,7 @@
 
 # Exocortex
 
-A **modern** personal **wiki** that doesn't suck.  
+A **modern** personal **wiki** that doesn't suck.
 
 ## Features
 
@@ -19,7 +19,7 @@ A **modern** personal **wiki** that doesn't suck.
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
 get going (including sometimes installing new languages!).  Exocortex aims to
-solve these problems.  
+solve these problems.
 
 ## First Principles
 
@@ -59,7 +59,7 @@ That's it!  The rest of your wiki can be structured however you'd like.
 ## Commands
 
 * `new` - creates a new directory with an `exocortex.json` file
-* `start` - boots up the wiki server 
+* `start` - boots up the wiki server
 * `init` - creates a templated `exocortex.json` file based on sensible defaults
 * `exo` - alias for start
 
@@ -77,40 +77,40 @@ That's it!  The rest of your wiki can be structured however you'd like.
 
 TODO: more to come...
 
-<table>  
-  <tr>    
-    <th>Action</th>    
-    <th>Shortcut</th>  
-    <th>Description</th>  
-  </tr>  
-  <tr> 
-    <td>Zen Mode</td>    
+<table>
+  <tr>
+    <th>Action</th>
+    <th>Shortcut</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Zen Mode</td>
     <td>
       <kbd>cmd</kbd> + <kbd>z </kbd>
-    </td>  
+    </td>
     <td>
       Eliminate all noise around the wiki for better editing
     </td>
-  </tr>  
-  <tr> 
-    <td>Insert Mode</td>    
+  </tr>
+  <tr>
+    <td>Insert Mode</td>
     <td>
       <kbd>cmd</kbd> + <kbd>i </kbd>
-    </td>  
-    <td>
-      Turn whatever page you're viewing into 'edit' mode 
     </td>
-  </tr>  
-  <tr> 
-    <td>Preview Mode</td>    
+    <td>
+      Turn whatever page you're viewing into 'edit' mode
+    </td>
+  </tr>
+  <tr>
+    <td>Preview Mode</td>
     <td>
       <kbd>cmd</kbd> + <kbd>p </kbd>
-    </td>  
+    </td>
     <td>
       Turn whatever page you're viewing into 'edit' mode and split screen with a
       preview of what the MD will render to on the right
     </td>
-  </tr>  
+  </tr>
 </table>
 
 ## API Routes
@@ -134,7 +134,7 @@ TODO: more to come...
 | `/wiki/:page-name` | Renders markdown of that path |
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |
-| `/wiki/revisions/:page-name` | See past revisions | 
+| `/wiki/revisions/:page-name` | See past revisions |
 
 
 ## Why the name Exocortex?
@@ -143,7 +143,7 @@ Exocortex was shamelessly stolen from the book [Pragmatic Thinking &
 Learning](https://pragprog.com/book/ahptl/pragmatic-thinking-and-learning).
 Andy Hunt talks a lot about the value of having an 'excortex' or personal wiki
 to record your learning.  I started documenting my own exocortex in `.md` files
-a year or so ago and this project aims to be a nice interface for that work.  
+a year or so ago and this project aims to be a nice interface for that work.
 
 ## Development/Contributing
 **Note**: I'm open to bug fixes and feature requests but I'm not sure how much
@@ -158,7 +158,7 @@ Ensure you have the following installed:
 
 **Backend**
 
-To work on the backend you'll need a sample wiki to point to.  
+To work on the backend you'll need a sample wiki to point to.
 TODO: provide a link to sample wiki people can clone down.
 
 ```sh
@@ -167,7 +167,7 @@ make dev
 
 **Frontend**
 
-To work on the backend you can run:
+To work on the frontend you can run:
 ```sh
 $ cd ui
 $ yarn install
