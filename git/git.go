@@ -37,8 +37,7 @@ type Store struct {
 func (gs *Store) exec(commands ...string) (string, error) {
 	cmd := exec.Command("git", commands...)
 	cmd.Dir = gs.Repo
-	var out bytes.Buffer
-	var errors bytes.Buffer
+	var out, errors bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &errors
 
@@ -163,7 +162,6 @@ func (gs *Store) WritePage(p *exo.Page) error {
 	if err := ioutil.WriteFile(absPath, []byte(p.Body), 0600); err != nil {
 		return err
 	}
-	fmt.Println("Made it to after write")
 	if _, err := gs.Add(path, ""); err != nil {
 		return err
 	}
