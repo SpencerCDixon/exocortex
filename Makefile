@@ -13,6 +13,8 @@ build: deps
 
 # Installs binary as 'exo' which is what it gets distributed as
 install: deps
+	@echo Building UI
+	@cd ui && yarn run build
 	packr build -o $(GOPATH)/bin/exo
 	@echo 'exo' successfully installed
 	@echo
