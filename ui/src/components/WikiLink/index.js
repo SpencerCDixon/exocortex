@@ -8,6 +8,9 @@ const style = {
   color: 'goldenrod',
 };
 
+// TODO: on mount, check if this is a link to another wiki page.  If so, just
+// spin off fetching requests for that page so it's ready in the cache when user
+// wants to visit it.
 class WikiLink extends Component {
   render() {
     const { match: { params: { page } } } = this.props;
