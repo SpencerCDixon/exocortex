@@ -2,7 +2,7 @@
 
 # Exocortex
 
-A wiki to act as an extension of your brain.  
+A **modern** personal **wiki** that doesn't suck.  
 
 ## Features
 
@@ -12,35 +12,41 @@ A wiki to act as an extension of your brain.
 * **Git based versioning**
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
+* **Prefetch pages for fast response times**
+
+## Why?
 
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
 get going (including sometimes installing new languages!).  Exocortex aims to
-solve these problems.
+solve these problems.  
 
 ## First Principles
 
-1. Should be easy to run locally (`brew install exocortex && exo new && exo`)
-2. Should only require a git repo to operate
-3. Should have a modern interface that is a pleasure to work with (SPA React)
-4. **Only** allow markdown for editing
+1. Should be easy to run locally - `brew install exocortex && exo new && exo`
+2. Should only require a git repo to operate - `git init`
+3. Should have a modern interface that is a pleasure to work with (SPA React) - comes with the binary.
+4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
+5. Should only allow markdown for editing to reduce feature bloat.
 
 ## User Requirements
 
-1. User has local git installation
-2. User's wiki has a git repository setup
-3. User has pointed the config file to an absolute path of where repo lives
-4. Nothing else.
-
+1. Must have `git` installed
+2. Wiki must **be a git repository**
+3. Must have an `exocortex.json` in your repo.  (`exo init` for existing projects)
+4. Nothing else :smiley:
 
 ## Feature Roadmap
+
+Exocortex is missing a lot of useful features that would enable it to go beyond
+just being a local personal wiki.  I developed it while on Thanksgiving vacation
+so there was a limited feature set that I decided to prioritize.  See below for
+a list of enhancements I'd like to add in the coming weeks:
 
 - [ ] User authentication
 - [ ] Better UI customization/overrides
 
-## Ideas (in flux...)
-
-### Folder structure
+## Folder structure
 
 ```sh
 home.md         <-- file used for wiki homepage
@@ -49,14 +55,6 @@ exocortex.json  <-- wiki globals
 ```
 
 That's it!  The rest of your wiki can be structured however you'd like.
-
-#### Sync Pattern
-
-1. Every time a file gets committed, touch a timestamp
-2. Start a background worker that checks that timestamp on an interval
-3. If that timestamp is less than or equal to the interval than do a `push` to
-   the remote.
-4. If no remote is set, skip the whole background syncing process.
 
 ## Commands
 
@@ -74,58 +72,6 @@ That's it!  The rest of your wiki can be structured however you'd like.
 * `server.host` - can be used for OAuth in the future
 * `server.port` - port for the server to listen
 * `anonymousRead` - allow anonymous users to read pages
-
-## API Routes
-
-| Method | Path | Description |
-|--------|------|-------------|
-| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
-| **GET** | `/api/settings` | TODO. returns global wiki settings |
-| **POST** | `/api/settings` | TODO. sets settings |
-| **POST** | `/api/search` | search through wiki for a query |
-| **GET** | `/api/wiki/:page-name` | retrieves content for this page |
-| **POST** | `/api/wiki/:page-name` | writes the file, commits |
-| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
-| **GET** | `/api/` | returns list of prefixes available|
-| **GET** | `/*` | return the UI |
-
-## UI Routes
-| Route | Description |
-|-------|-------------|
-| `/search`| Renders search results |
-| `/wiki/:page-name` | Renders markdown of that path |
-| `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
-| `/wiki/edit/:page-name` | Update a page that exists |
-| `/wiki/revisions/:page-name` | See past revisions | 
-
-
-## Development
-Ensure you have the following installed:
-
-* `go 1.9`
-* `node >6`
-* `yarn`
-
-**Backend**
-
-To work on the backend you'll need a sample wiki to point to.  
-TODO: provide a link to sample wiki people can clone down.
-
-```sh
-make dev
-```
-
-**Frontend**
-
-To work on the backend you can run:
-```sh
-$ cd ui
-$ yarn install
-$ yarn start
-```
-
-This should boot up `http://localhost:3000` with a dev server that proxies to
-`localhost:1234` (where the API lives).
 
 ## Hotkeys
 
@@ -167,40 +113,66 @@ TODO: more to come...
   </tr>  
 </table>
 
-## TODO
+## API Routes
 
-- [x] when a page doesn't exist redirect to an 'new' page in the UI
-- [x] allow exo root command to look in local directory for config file
-- [x] change --config flag to instead take it's location as an arg
-- [x] hot keys in frontend
-- [x] exo init command which just brings in the config file but doesn't create new dir
-- [x] add style theme
-- [x] extract withWikiPage
-- [x] add the hot keys for different modes
-- [x] find good icon set to use
-- [ ] zen mode editing
-- [ ] expose endpoint for setting style theme
-- [ ] add state management
-- [ ] set up all primitive components
-- [ ] change color of top bar based on different modes like vim
-- [ ] can I get vim text editing??
-- [ ] create local cache of pages that are loaded
-- [ ] prefetch pages in same prefix so they're ready to go
-- [ ] come up with a better code highlighting solution
-- [ ] add ability to customize font theme based on: https://github.com/KyleAMathews/typography.js (expose API endpoint)
-- [ ] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
-- [ ] allow override of code block coloring based on highlight.js
-- [ ] change hot key advice based on what mode the user is in
-- [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
-- [ ] add DELETE page 
-- [ ] see past revisions and revert back to specific commit
-- [ ] diff view of files
-- [ ] image support
-- [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
+| Method | Path | Description |
+|--------|------|-------------|
+| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
+| **GET** | `/api/settings` | TODO. returns global wiki settings |
+| **POST** | `/api/settings` | TODO. sets settings |
+| **POST** | `/api/search` | search through wiki for a query |
+| **GET** | `/api/wiki/:page-name` | retrieves content for this page |
+| **POST** | `/api/wiki/:page-name` | writes the file, commits |
+| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
+| **GET** | `/api/` | returns list of prefixes available|
+| **GET** | `/*` | return the UI |
 
-On Airplane:
-- [ ] set up background syncing 
-- [ ] create 'new' command that bootstraps an empty wiki
+## UI Routes
+| Route | Description |
+|-------|-------------|
+| `/search`| Renders search results |
+| `/wiki/:page-name` | Renders markdown of that path |
+| `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
+| `/wiki/edit/:page-name` | Update a page that exists |
+| `/wiki/revisions/:page-name` | See past revisions | 
 
 
-[resolve path](https://github.com/mjackson/resolve-pathname)
+## Why the name Exocortex?
+
+Exocortex was shamelessly stolen from the book [Pragmatic Thinking &
+Learning](https://pragprog.com/book/ahptl/pragmatic-thinking-and-learning).
+Andy Hunt talks a lot about the value of having an 'excortex' or personal wiki
+to record your learning.  I started documenting my own exocortex in `.md` files
+a year or so ago and this project aims to be a nice interface for that work.  
+
+## Development/Contributing
+**Note**: I'm open to bug fixes and feature requests but I'm not sure how much
+free time I'll be able to commit to working on this.  If there is a feature you
+_aboslutely must have right away_ then feel free to fork!
+
+Ensure you have the following installed:
+
+* `go 1.9`
+* `node >6`
+* `yarn`
+
+**Backend**
+
+To work on the backend you'll need a sample wiki to point to.  
+TODO: provide a link to sample wiki people can clone down.
+
+```sh
+make dev
+```
+
+**Frontend**
+
+To work on the backend you can run:
+```sh
+$ cd ui
+$ yarn install
+$ yarn start
+```
+
+This should boot up `http://localhost:3000` with a dev server that proxies to
+`localhost:1234` (where the API lives).
