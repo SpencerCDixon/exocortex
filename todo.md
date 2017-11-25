@@ -17,6 +17,8 @@
 - [x] extract withWikiPage
 - [x] add the hot keys for different modes
 - [x] find good icon set to use
+- [x] image support
+- [x] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
 - [ ] zen mode editing
 - [ ] expose endpoint for setting style theme
 - [ ] add state management
@@ -27,18 +29,17 @@
 - [ ] prefetch pages in same prefix so they're ready to go
 - [ ] come up with a better code highlighting solution
 - [ ] add ability to customize font theme based on: https://github.com/KyleAMathews/typography.js (expose API endpoint)
-- [ ] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
 - [ ] allow override of code block coloring based on highlight.js
 - [ ] change hot key advice based on what mode the user is in
 - [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
 - [ ] add DELETE page 
 - [ ] see past revisions and revert back to specific commit
 - [ ] diff view of files
-- [ ] image support
 - [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
 - [ ] change home icon to be a brain
+ 
 On Airplane:
-- [ ] set up background syncing 
+- [x] set up background syncing 
 - [ ] create 'new' command that bootstraps an empty wiki
 
 
