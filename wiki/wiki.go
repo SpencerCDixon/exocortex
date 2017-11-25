@@ -51,6 +51,7 @@ func (wiki *wiki) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	wiki.router.HandleFunc("/images/{location:.*}", wiki.handleImages).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleView).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleWrite).Methods("POST")
+	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleDelete).Methods("DELETE")
 	wiki.router.HandleFunc("/search", wiki.handleSearch).Methods("POST")
 	wiki.router.HandleFunc("/", wiki.handleList)
 	wiki.router.ServeHTTP(w, r)

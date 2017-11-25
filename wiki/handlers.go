@@ -136,3 +136,20 @@ func (wiki *wiki) handleUpdateSettings(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusCreated)
 }
+
+func (wiki *wiki) handleDelete(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pageToDelete := vars["page"]
+	if pageToDelete == "" {
+		http.Error(w, "Nothing to delete", http.StatusOK)
+		return
+	}
+	msg := wiki.store.ExoMessage(pageToDelete, "Deleted")
+	err := wiki.store.Remove(pageToDelete, msg)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(200)
+}

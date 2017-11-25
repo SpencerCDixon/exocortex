@@ -12,7 +12,6 @@ A **modern** personal **wiki** that doesn't suck.
 * **Git based versioning**
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
-* **Prefetch pages for fast response times**
 * [**Automatic Table Of Contents on pages you want**](#auto-toc)
 
 ## Why?
@@ -115,21 +114,21 @@ TODO: more to come...
 
 Exocortex is missing a lot of useful features that would enable it to go beyond
 just being a local personal wiki.  I developed it while on Thanksgiving vacation
-so there was a limited feature set that I decided to prioritize.  See below for
-a list of enhancements I'd like to add in the coming weeks:
+primarily on planes so there was a limited feature set that I decided to prioritize.  
+See below for a list of enhancements I'd like to add in the coming weeks:
 
 - [ ] User authentication
+- [ ] Prefetching of pages for better responsiveness
 - [ ] Better UI customization/overrides
 - [ ] Add ability to revert pages to previous commits
 - [ ] Add ability to see diffs between commits
-- [ ] Add ability to delete pages
 
 ## Folder structure
 
 ```sh
-home.md         <-- file used for wiki homepage
-exocortex.json  <-- wiki globals
-.git            <-- data store for the wiki
+home.md         <-- file used for wiki homepage (not required)
+exocortex.json  <-- wiki globals (required)
+.git            <-- data store for the wiki (required)
 ```
 
 That's it!  The rest of your wiki can be structured however you'd like.
@@ -144,11 +143,9 @@ That's it!  The rest of your wiki can be structured however you'd like.
 | **POST** | `/api/images/:path-to-image` | serve static images found in the wiki |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
+| **DELETE** | `/api/wiki/:page-name` | deletes the page |
 | **GET** | `/api/` | returns list of prefixes available |
 | **GET** | `/*` | return the UI |
-| ------ | ----- | ------------- |
-| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
-| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
 
 ## UI Routes
 | Route | Description |
@@ -184,9 +181,8 @@ Make bootstrap will build the UI, install the Go binary, create an empty example
 wiki, and boot up that example wiki on `localhost:1234`.
 
 ```sh
-$ mkdir -p $GOPATH/github.com/spencercdixon
-$ cd $GOPATH/github.com/spencercdixon && git clone git@github.com:SpencerCDixon/exocortex.git
-$ cd exocortex
+$ go get -u github.com/spencercdixon/exocortex
+$ cd $GOPATH/github.com/spencercdixon/exocortex
 $ make bootstrap
 ```
 

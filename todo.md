@@ -14,9 +14,10 @@
 - [x] set up basic background syncing 
 - [x] create 'new' command that bootstraps an empty wiki
 - [x] add endpoints for getting access to the settings
+- [x] design a better link 
+- [x] add DELETE page 
 - [ ] zen mode editing
 - [ ] expose endpoint for setting style theme
-- [ ] design a better link 
 - [ ] add state management with mobx to the UI
 - [ ] change color of top bar based on different modes like vim does
 - [ ] look into vim edit mode for slate
@@ -27,7 +28,6 @@
 - [ ] allow override of code block coloring based on highlight.js
 - [ ] change hot key advice based on what mode the user is in
 - [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
-- [ ] add DELETE page 
 - [ ] see past revisions and revert back to specific commit
 - [ ] diff view of files
 - [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
