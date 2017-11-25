@@ -33,6 +33,7 @@ func New() http.Handler {
 
 	// TODO: add better checks for missing remote/branch
 	if len(store.Remote) > 0 {
+		// if remoteExists && branchExists...
 		log.Debug("Starting syncing process")
 		go store.Sync(viper.GetInt("syncInterval"))
 	}
@@ -44,6 +45,7 @@ func New() http.Handler {
 // ServeHTTP complies to the http Handler interface
 func (wiki *wiki) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	wiki.router.HandleFunc("/settings", wiki.handleGetSettings).Methods("GET")
+	wiki.router.HandleFunc("/settings", wiki.handleUpdateSettings).Methods("POST")
 	wiki.router.HandleFunc("/images/{location:.*}", wiki.handleImages).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleView).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleWrite).Methods("POST")
@@ -75,6 +77,7 @@ func (wiki *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}
 	w.Write(jsonData)
 }
 
+// SettingsPath is the absolute path to where the wiki's configuration lives.
 func (wiki *wiki) SettingsPath() string {
 	return filepath.Join(wiki.store.Repo, "exocortex.json")
 }

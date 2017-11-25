@@ -2,6 +2,7 @@ package wiki
 
 import (
 	"bytes"
+	"encoding/json"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -115,4 +116,25 @@ func (wiki *wiki) handleGetSettings(w http.ResponseWriter, r *http.Request) {
 	settings := &exo.WikiSettings{}
 	util.ReadFileJSON(wiki.SettingsPath(), settings)
 	wiki.renderJSON(w, http.StatusOK, settings)
+}
+
+func (wiki *wiki) handleUpdateSettings(w http.ResponseWriter, r *http.Request) {
+	settings := &exo.WikiSettings{}
+	util.ReadFileJSON(wiki.SettingsPath(), settings)
+
+	req := &exo.SettingsUpdateRequest{}
+	wiki.parseRequest(r, req)
+
+	if req.Title != "" {
+		settings.Title = req.Title
+	}
+
+	b, err := json.Marshal(settings)
+	if err != nil {
+		http.Error(w, "error marshalling settings", http.StatusInternalServerError)
+		return
+	}
+
+	ioutil.WriteFile(wiki.SettingsPath(), b, 0777)
+	w.WriteHeader(http.StatusCreated)
 }

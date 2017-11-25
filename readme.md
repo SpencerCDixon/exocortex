@@ -138,16 +138,17 @@ That's it!  The rest of your wiki can be structured however you'd like.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
-| **GET** | `/api/settings` | TODO. returns global wiki settings |
-| **POST** | `/api/settings` | TODO. sets settings |
+| **GET** | `/api/settings` | returns global wiki settings |
+| **POST** | `/api/settings` | sets settings - only certain fields are allowed to be updated via API |
 | **POST** | `/api/search` | search through wiki for a query |
 | **POST** | `/api/images/:path-to-image` | serve static images found in the wiki |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
-| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
-| **GET** | `/api/` | returns list of prefixes available|
+| **GET** | `/api/` | returns list of prefixes available |
 | **GET** | `/*` | return the UI |
+| ------ | ----- | ------------- |
+| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
+| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
 
 ## UI Routes
 | Route | Description |
