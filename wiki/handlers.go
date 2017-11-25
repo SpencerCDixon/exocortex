@@ -2,7 +2,6 @@ package wiki
 
 import (
 	"bytes"
-	"encoding/json"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -119,22 +118,21 @@ func (wiki *wiki) handleGetSettings(w http.ResponseWriter, r *http.Request) {
 }
 
 func (wiki *wiki) handleUpdateSettings(w http.ResponseWriter, r *http.Request) {
+	// Parse current settings and request
 	settings := &exo.WikiSettings{}
 	util.ReadFileJSON(wiki.SettingsPath(), settings)
-
 	req := &exo.SettingsUpdateRequest{}
 	wiki.parseRequest(r, req)
 
+	// Update any fields that can be updated
 	if req.Title != "" {
 		settings.Title = req.Title
 	}
 
-	b, err := json.Marshal(settings)
-	if err != nil {
+	// Save new settings
+	if err := wiki.WriteSettings(settings); err != nil {
 		http.Error(w, "error marshalling settings", http.StatusInternalServerError)
 		return
 	}
-
-	ioutil.WriteFile(wiki.SettingsPath(), b, 0777)
 	w.WriteHeader(http.StatusCreated)
 }

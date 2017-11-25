@@ -3,6 +3,7 @@ package wiki
 import (
 	"encoding/json"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"path/filepath"
 
@@ -10,6 +11,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 
+	"github.com/spencercdixon/exocortex/exo"
 	"github.com/spencercdixon/exocortex/git"
 )
 
@@ -80,4 +82,15 @@ func (wiki *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}
 // SettingsPath is the absolute path to where the wiki's configuration lives.
 func (wiki *wiki) SettingsPath() string {
 	return filepath.Join(wiki.store.Repo, "exocortex.json")
+}
+
+// WriteSettings takes an exo setting struct and writes it to the wiki's proper
+// location.
+func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
+	b, err := json.Marshal(settings)
+	if err != nil {
+		return err
+	}
+	ioutil.WriteFile(wiki.SettingsPath(), b, 0777)
+	return nil
 }
