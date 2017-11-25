@@ -41,7 +41,8 @@
  
 On Airplane:
 - [x] set up background syncing 
-- [ ] create 'new' command that bootstraps an empty wiki
+- [x] create 'new' command that bootstraps an empty wiki
+- [ ] add endpoints for getting access to the settings
 
 
 [resolve path](https://github.com/mjackson/resolve-pathname)

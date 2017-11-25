@@ -11,6 +11,7 @@ import (
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
 	"github.com/spencercdixon/exocortex/exo"
+	"github.com/spencercdixon/exocortex/util"
 	"gopkg.in/h2non/filetype.v1"
 )
 
@@ -108,4 +109,10 @@ func (wiki *wiki) handleImages(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", kind.MIME.Value)
 	io.Copy(w, bytes.NewReader(imgBuf))
 	return
+}
+
+func (wiki *wiki) handleGetSettings(w http.ResponseWriter, r *http.Request) {
+	settings := &exo.WikiSettings{}
+	util.ReadFileJSON(wiki.SettingsPath(), settings)
+	wiki.renderJSON(w, http.StatusOK, settings)
 }

@@ -196,7 +196,7 @@ func (gs *Store) Sync(secondInterval int) {
 			log.Debug(err.Error())
 		}
 		end := time.Now()
-		log.Debugf("Finished sync in: %v", start.Sub(end))
+		log.Debugf("Finished sync in: %v", end.Sub(start))
 	}
 }
 

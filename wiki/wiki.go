@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"path/filepath"
 
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
@@ -42,6 +43,7 @@ func New() http.Handler {
 
 // ServeHTTP complies to the http Handler interface
 func (wiki *wiki) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	wiki.router.HandleFunc("/settings", wiki.handleGetSettings).Methods("GET")
 	wiki.router.HandleFunc("/images/{location:.*}", wiki.handleImages).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleView).Methods("GET")
 	wiki.router.HandleFunc("/wiki/{page:.*}", wiki.handleWrite).Methods("POST")
@@ -53,13 +55,13 @@ func (wiki *wiki) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 //---------
 // Utility
 //---------
-func (_ *wiki) parseRequest(r *http.Request, data interface{}) error {
+func (wiki *wiki) parseRequest(r *http.Request, data interface{}) error {
 	const maxRequestLen = 16 * 1024 * 1024
 	lr := io.LimitReader(r.Body, maxRequestLen)
 	return json.NewDecoder(lr).Decode(data)
 }
 
-func (_ *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
+func (wiki *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
 	jsonData, err := json.Marshal(data)
 
 	if err != nil {
@@ -71,4 +73,8 @@ func (_ *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	w.Write(jsonData)
+}
+
+func (wiki *wiki) SettingsPath() string {
+	return filepath.Join(wiki.store.Repo, "exocortex.json")
 }
