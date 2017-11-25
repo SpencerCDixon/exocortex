@@ -168,7 +168,39 @@ func (gs *Store) WritePage(p *exo.Page) error {
 	return nil
 }
 
-// Ensures we have git installed and there is a repo in the directory the user
+// Pull grabs the latest code from the remote branch this store is tracking
+func (gs *Store) Pull() (string, error) {
+	return gs.exec("pull", gs.Remote, gs.Branch)
+}
+
+// Push pushes the current state of the wiki to the remote branch
+// this store is tracking.
+func (gs *Store) Push() (string, error) {
+	return gs.exec("push", gs.Remote, gs.Branch)
+}
+
+// Sync pulls latest changes and pushes up any new commits to the remote branch
+// this store is tracking.
+func (gs *Store) Sync(secondInterval int) {
+	for {
+		start := time.Now()
+		log.Debugf("Starting sync for remote '%s' and branch '%s'", gs.Remote, gs.Branch)
+		time.Sleep(time.Duration(secondInterval) * time.Second)
+		_, err := gs.Pull()
+		if err != nil {
+			log.Debug(err.Error())
+		}
+
+		_, err = gs.Push()
+		if err != nil {
+			log.Debug(err.Error())
+		}
+		end := time.Now()
+		log.Debugf("Finished sync in: %v", start.Sub(end))
+	}
+}
+
+// EnsureValidEnvironment ensures we have git installed and there is a repo in the directory the user
 // decided to host their wiki in. Return error if anything is wrong so callers
 // can bail out before continueing
 func (gs *Store) EnsureValidEnvironment() error {

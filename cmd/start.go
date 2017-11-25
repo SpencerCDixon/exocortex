@@ -39,9 +39,9 @@ var startCmd = &cobra.Command{
 		router := mux.NewRouter()
 
 		// Mount wiki under '/api'
-		wiki := wiki.New()
+		wikiHandler := wiki.New()
 		router.PathPrefix("/api").Handler(
-			http.StripPrefix("/api", wiki),
+			http.StripPrefix("/api", wikiHandler),
 		)
 
 		// Handle Static Assets - catch all for SPA + serving bundled JS/CSS

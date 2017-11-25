@@ -63,8 +63,8 @@ $ cd my-first-wiki && exo start
 * `title` - base title for the wiki
 * `remote` - where to push the wiki to on the interval
 * `branch` - branch to use when pushing/pulling from remote
-* `server.host` - can be used for OAuth in the future
-* `server.port` - port for the server to listen
+* `server.host` - host wiki is located at
+* `server.port` - port to listen on
 
 ## Hotkeys
 
@@ -120,6 +120,9 @@ a list of enhancements I'd like to add in the coming weeks:
 
 - [ ] User authentication
 - [ ] Better UI customization/overrides
+- [ ] Add ability to revert pages to previous commits
+- [ ] Add ability to see diffs between commits
+- [ ] Add ability to delete pages
 
 ## Folder structure
 
@@ -139,6 +142,7 @@ That's it!  The rest of your wiki can be structured however you'd like.
 | **GET** | `/api/settings` | TODO. returns global wiki settings |
 | **POST** | `/api/settings` | TODO. sets settings |
 | **POST** | `/api/search` | search through wiki for a query |
+| **POST** | `/api/images/:path-to-image` | serve static images found in the wiki |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
 | **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
@@ -152,7 +156,7 @@ That's it!  The rest of your wiki can be structured however you'd like.
 | `/wiki/:page-name` | Renders markdown of that path |
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |
-| `/wiki/revisions/:page-name` | See past revisions |
+| `/wiki/revisions/:page-name` | TODO: See past revisions |
 
 ## Why the name Exocortex?
 

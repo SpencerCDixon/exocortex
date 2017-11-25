@@ -29,6 +29,13 @@ func New() http.Handler {
 	if err := store.EnsureValidEnvironment(); err != nil {
 		log.Fatal(err.Error())
 	}
+
+	// TODO: add better checks for missing remote/branch
+	if len(store.Remote) > 0 {
+		log.Debug("Starting syncing process")
+		go store.Sync(viper.GetInt("syncInterval"))
+	}
+
 	router := mux.NewRouter()
 	return &wiki{router: router, store: store}
 }
