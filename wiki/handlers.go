@@ -144,9 +144,12 @@ func (wiki *wiki) handleDelete(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Nothing to delete", http.StatusOK)
 		return
 	}
-	msg := wiki.store.ExoMessage(pageToDelete, "Deleted")
-	err := wiki.store.Remove(pageToDelete, msg)
+	path := util.EnsureMDPath(pageToDelete)
+	log.Debugf("Deleting page: %s", pageToDelete)
+	msg := wiki.store.ExoMessage(path, "Deleted")
+	err := wiki.store.Remove(path, msg)
 	if err != nil {
+		log.Errorf("Erorr deleting page: %s", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

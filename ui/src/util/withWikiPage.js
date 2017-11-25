@@ -56,6 +56,18 @@ export default function withWikiPage(BaseComponent) {
       history.push(`/wiki/${page}`);
     };
 
+    handleDelete = () => {
+      const { history, match: { params: { page } } } = this.props;
+      Api.deletePage(page)
+        .then(() => {
+          history.push(`/wiki`);
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Something went wrong');
+        });
+    };
+
     render() {
       const { match: { params: { page } } } = this.props;
       if (this.state.content) {
@@ -66,6 +78,7 @@ export default function withWikiPage(BaseComponent) {
             onEdit={this.handleEdit}
             onSave={this.handleSave}
             onView={this.handleView}
+            onDelete={this.handleDelete}
             {...this.props}
           />
         );

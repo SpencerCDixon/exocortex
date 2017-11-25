@@ -32,6 +32,8 @@
 - [ ] diff view of files
 - [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
 - [ ] change home icon to be a brain
+- [ ] fix bug with not being able to click through the hot key helper
+- [ ] add modals and toast support for alerts to users and confirmations on dangerous tasks
  
 ## Interesting Resources To Investigate
 * [resolve path](https://github.com/mjackson/resolve-pathname)

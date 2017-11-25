@@ -20,3 +20,7 @@ export function save(page, content) {
 export function search(query) {
   return client.post(`/search`, { query });
 }
+
+export function deletePage(page) {
+  return client.delete(`/wiki/${page}`);
+}
