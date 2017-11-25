@@ -14,8 +14,8 @@ const style = {
 // wants to visit it.
 class WikiLink extends Component {
   render() {
-    const { match: { params: { page } } } = this.props;
-    const { href, children } = this.props;
+    const { href, children, match: { params: { page } } } = this.props;
+
     let resolved;
     if (href[0] === '#') {
       resolved = path.resolve('/wiki/', page + href);

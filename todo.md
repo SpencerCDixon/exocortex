@@ -21,6 +21,7 @@
 - [x] add TOC with remake: https://github.com/wooorm/remark-toc/blob/master/index.js
 - [ ] zen mode editing
 - [ ] expose endpoint for setting style theme
+- [ ] design a better link 
 - [ ] add state management
 - [ ] set up all primitive components
 - [ ] change color of top bar based on different modes like vim
