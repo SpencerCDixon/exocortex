@@ -18,7 +18,7 @@
 - [x] add DELETE page 
 - [ ] zen mode editing
 - [ ] expose endpoint for setting style theme
-- [ ] add state management with mobx to the UI
+- [ ] add state management with redux/mobx to the UI
 - [ ] change color of top bar based on different modes like vim does
 - [ ] look into vim edit mode for slate
 - [ ] create local cache of pages that are loaded 
@@ -34,6 +34,8 @@
 - [ ] change home icon to be a brain
 - [ ] fix bug with not being able to click through the hot key helper
 - [ ] add modals and toast support for alerts to users and confirmations on dangerous tasks
+- [ ] add support for titles on various pages
+- [ ] add a 'README.md' to generated wikis so their githubs aren't blank
  
 ## Interesting Resources To Investigate
 * [resolve path](https://github.com/mjackson/resolve-pathname)

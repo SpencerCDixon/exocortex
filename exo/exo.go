@@ -53,8 +53,7 @@ type WikiSettings struct {
 }
 
 // SettingsUpdateRequest is the struct used to allow users to update their
-// wiki settings via the API.  Only a few fields should be allowed to be updated
-// via the UI.
+// wiki settings via the API.  Only a few fields are allowed to be updated.
 type SettingsUpdateRequest struct {
 	Title string `json:"title"`
 }
