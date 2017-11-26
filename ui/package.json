@@ -30,6 +30,7 @@
     "remark-react-lowlight": "^0.7.0",
     "remark-slug": "^4.2.3",
     "remark-toc": "^4.0.1",
+    "reselect": "^3.0.1",
     "sanitize.css": "^5.0.0",
     "slate": "^0.31.3",
     "slate-plain-serializer": "^0.4.11",

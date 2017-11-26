@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import hideWhenZen from 'util/hideWhenZen';
 import { X, HelpCircle } from 'react-feather';
 import { Flex, Box } from 'reflexbox';
 import { Wrapper, Circle, Helper, Hotkey, Subheader } from './styles';
@@ -55,4 +56,4 @@ class HotkeyHelp extends Component {
   }
 }
 
-export default HotkeyHelp;
+export default hideWhenZen(HotkeyHelp);

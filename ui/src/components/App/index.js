@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import NavBar from 'components/NavBar';
 import { Redirect, Switch, Route } from 'react-router-dom';
 import HotkeyHelp from 'components/HotkeyHelp';
+import isHotkey from 'is-hotkey';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleZen } from 'store/modules/modes';
 
 // Pages
 import HomePage from 'pages/HomePage';
@@ -17,7 +20,23 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
+const isZenmode = isHotkey('mod+z');
+
 class App extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleZen);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleZen);
+  }
+
+  handleZen = e => {
+    if (isZenmode(e)) {
+      this.props.toggleZen();
+    }
+  };
+
   render() {
     return (
       <Wrapper>
@@ -38,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(undefined, { toggleZen })(App);
