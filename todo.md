@@ -16,18 +16,18 @@
 - [x] add endpoints for getting access to the settings
 - [x] design a better link 
 - [x] add DELETE page 
-- [ ] zen mode editing
-- [ ] expose endpoint for setting style theme
-- [ ] add state management with redux/mobx to the UI
-- [ ] change color of top bar based on different modes like vim does
-- [ ] look into vim edit mode for slate
+- [x] zen mode editing
+- [x] add state management with redux/mobx to the UI
+- [x] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
 - [ ] create local cache of pages that are loaded 
 - [ ] prefetch pages in same prefix so they're ready to go
+- [ ] expose endpoint for setting style theme
+- [ ] change color of top bar based on different modes like I have in vim
+- [ ] look into vim edit mode for slate
 - [ ] come up with a better code highlighting solution
 - [ ] add ability to customize font theme based on: https://github.com/KyleAMathews/typography.js (expose API endpoint)
 - [ ] allow override of code block coloring based on highlight.js
 - [ ] change hot key advice based on what mode the user is in
-- [ ] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
 - [ ] see past revisions and revert back to specific commit
 - [ ] diff view of files
 - [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.

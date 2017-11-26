@@ -4,9 +4,9 @@ import { createSelector } from 'reselect';
 // ---------
 // Constants
 // ---------
-export const NAME = '@@exo/modes';
-export const SWITCH_MODE = `${NAME}/SWITCH_MODE`;
+export const NAME = '@@exo/hotKeys';
 export const TOGGLE_ZEN = `${NAME}/TOGGLE_ZEN`;
+export const TOGGLE_HELP = `${NAME}/TOGGLE_HELP`;
 export const MODES = {
   editing: 'editing',
   preview: 'preview',
@@ -17,21 +17,28 @@ export const MODES = {
 // Actions
 // -------
 export const toggleZen = createAction(TOGGLE_ZEN);
+export const toggleHelp = createAction(TOGGLE_HELP);
 export const actions = {
   toggleZen,
+  toggleHelp,
 };
 
 // -------
 // Reducer
 // -------
 export const defaultState = {
-  zen: true,
+  zen: false,
+  help: false,
 };
 export default handleActions(
   {
     [TOGGLE_ZEN]: (state, action) => ({
       ...state,
       zen: !state.zen,
+    }),
+    [TOGGLE_HELP]: (state, action) => ({
+      ...state,
+      help: !state.help,
     }),
   },
   defaultState,
@@ -40,6 +47,6 @@ export default handleActions(
 // ---------
 // Selectors
 // ---------
-
-export const getModeState = state => state.modes;
-export const getIsZen = createSelector(getModeState, state => state.zen);
+const getLocal = state => state.hotKeys;
+export const getIsZen = createSelector(getLocal, state => state.zen);
+export const getIsHelpOn = createSelector(getLocal, state => state.help);

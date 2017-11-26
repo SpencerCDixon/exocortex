@@ -5,7 +5,7 @@ import HotkeyHelp from 'components/HotkeyHelp';
 import isHotkey from 'is-hotkey';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { toggleZen } from 'store/modules/modes';
+import { toggleHelp, toggleZen } from 'store/modules/hotKeys';
 
 // Pages
 import HomePage from 'pages/HomePage';
@@ -20,7 +20,8 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const isZenmode = isHotkey('mod+z');
+const isZenMode = isHotkey('mod+z');
+const isHelpMode = isHotkey('mod+/');
 
 class App extends Component {
   componentDidMount() {
@@ -32,8 +33,11 @@ class App extends Component {
   }
 
   handleZen = e => {
-    if (isZenmode(e)) {
+    if (isZenMode(e)) {
       this.props.toggleZen();
+    }
+    if (isHelpMode(e)) {
+      this.props.toggleHelp();
     }
   };
 
@@ -57,4 +61,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(undefined, { toggleZen })(App));
+export default withRouter(connect(undefined, { toggleHelp, toggleZen })(App));

@@ -15,6 +15,7 @@ A **modern** git based personal **wiki** that doesn't suck.
 * **Prefetch pages for fast response times**
 * [**Automatic Table Of Contents on pages (if you want)**](#auto-toc)
 * **Spellcheck while you edit**
+* **Live markdown preview**
 * Many more...
 
 ## Why?

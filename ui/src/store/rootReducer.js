@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import settings from './modules/settings';
-import modes from './modules/modes';
+import hotKeys from './modules/hotKeys';
 
 export default combineReducers({
   settings,
-  modes,
+  hotKeys,
 });
