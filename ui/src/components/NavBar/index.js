@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
-// import NavLink from 'components/NavLink';
+import hideWhenZen from 'util/hideWhenZen';
 import Search from 'components/Search';
 import { colors } from 'style';
 import {
@@ -86,4 +86,4 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar);
+export default hideWhenZen(withRouter(NavBar));

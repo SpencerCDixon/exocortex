@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import NavBar from 'components/NavBar';
-import { Redirect, Switch, Route } from 'react-router-dom';
+import { withRouter, Redirect, Switch, Route } from 'react-router-dom';
 import HotkeyHelp from 'components/HotkeyHelp';
+import isHotkey from 'is-hotkey';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleHelp, toggleZen } from 'store/modules/hotKeys';
 
 // Pages
 import HomePage from 'pages/HomePage';
@@ -17,7 +20,27 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
+const isZenMode = isHotkey('mod+z');
+const isHelpMode = isHotkey('mod+/');
+
 class App extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleZen);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleZen);
+  }
+
+  handleZen = e => {
+    if (isZenMode(e)) {
+      this.props.toggleZen();
+    }
+    if (isHelpMode(e)) {
+      this.props.toggleHelp();
+    }
+  };
+
   render() {
     return (
       <Wrapper>
@@ -38,4 +61,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(connect(undefined, { toggleHelp, toggleZen })(App));

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Link as RouterLink } from 'react-router-dom';
 import { HashLink as RouterHashLink } from 'react-router-hash-link';
 import { isExternalURL } from 'util/path';
+import { connect } from 'react-redux';
+import { prefetchPage } from 'store/modules/pages';
+import { compose } from 'redux';
 import styled from 'styled-components';
 import path from 'path';
 
@@ -24,29 +28,47 @@ const HashLink = styled(RouterHashLink)`
   ${styles};
 `;
 
-// TODO: on mount, check if this is a link to another wiki page.  If so, just
-// spin off fetching requests for that page so it's ready in the cache when user
-// wants to visit it.
 class WikiLink extends Component {
+  static propTypes = {
+    prefetchPage: PropTypes.func.isRequired,
+  };
+
+  componentDidMount() {
+    // If linking to another wiki page
+    if (!this.isHash && !this.isExternal) {
+      const { href } = this.props;
+      const withoutWikiPrefix = this.resolvedPath.replace('/wiki/', '');
+      this.props.prefetchPage(withoutWikiPrefix);
+    }
+  }
+
+  get isHash() {
+    return this.props.href[0] === '#';
+  }
+
+  get isExternal() {
+    return isExternalURL(this.props.href);
+  }
+
+  get resolvedPath() {
+    const { page, href } = this.props;
+    if (this.isHash) {
+      return path.resolve('/wiki/', page + href);
+    } else {
+      return path.resolve('/wiki/', href);
+    }
+  }
+
   render() {
     const { href, children, match: { params: { page } } } = this.props;
 
-    let resolved;
-    if (href[0] === '#') {
-      resolved = path.resolve('/wiki/', page + href);
-    } else {
-      resolved = path.resolve('/wiki/', href);
-    }
-    const isExternal = isExternalURL(href);
-    const isHash = href[0] === '#';
-
-    if (isHash) {
-      return <HashLink to={resolved}>{children}</HashLink>;
+    if (this.isHash) {
+      return <HashLink to={this.resolvedPath}>{children}</HashLink>;
     } else {
       return (
         <Link
-          target={isExternal ? '_blank' : ''}
-          to={isExternal ? href : resolved}>
+          target={this.isExternal ? '_blank' : ''}
+          to={this.isExternal ? href : this.resolvedPath}>
           {children}
         </Link>
       );
@@ -54,4 +76,7 @@ class WikiLink extends Component {
   }
 }
 
-export default withRouter(WikiLink);
+const withPrefetch = connect(undefined, { prefetchPage });
+const enhance = compose(withRouter, withPrefetch);
+
+export default enhance(WikiLink);

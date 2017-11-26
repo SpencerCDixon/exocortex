@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import AppProvider from 'components/AppProvider';
 import registerServiceWorker from './registerServiceWorker';
 import typography from 'util/typography';
+import createStore from 'store/createStore';
 
 typography.injectStyles();
 
-ReactDOM.render(<AppProvider />, document.getElementById('root'));
+const store = createStore();
+
+ReactDOM.render(<AppProvider store={store} />, document.getElementById('root'));
 registerServiceWorker();

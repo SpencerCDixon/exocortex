@@ -22,6 +22,12 @@ class ExplorePage extends Component {
             <WikiLink href={r}>{r}</WikiLink>
           </Box>
         ))}
+        {this.state.results.length === 0 && (
+          <p>
+            Your wiki is empty.{' '}
+            <WikiLink href="first-page">Create your first page</WikiLink>
+          </p>
+        )}
       </ContentWrapper>
     );
   }

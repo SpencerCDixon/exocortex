@@ -38,7 +38,7 @@ class SearchPage extends Component {
         <Flex column>
           {this.state.loading && <p>Loading...</p>}
           {this.state.results.map(r => (
-            <Box my={1}>
+            <Box key={r} my={1}>
               <WikiLink href={r.page}>{r.page}</WikiLink> | {r.line_number} |{' '}
               {r.content}
             </Box>

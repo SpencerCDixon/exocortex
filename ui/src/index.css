@@ -39,19 +39,6 @@ pre {
   width: 100%;
 }
 
-/* target IE7 and IE6 */
-*:first-child + html pre {
-  padding-bottom: 2em;
-  overflow-y: hidden;
-  overflow: visible;
-  overflow-x: auto;
-}
-* html pre {
-  padding-bottom: 2em;
-  overflow: visible;
-  overflow-x: auto;
-}
-
 kbd {
   display: inline-block;
   padding: 3px 5px;

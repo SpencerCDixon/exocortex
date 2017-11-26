@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ContentWrapper from 'components/ContentWrapper';
-import * as Api from 'util/api';
 import Editor from 'components/Editor';
+import { actions } from 'store/modules/pages';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 
 class NewWikiPage extends Component {
-  handleSave = newContent => {
-    const { history, match: { params: { page } } } = this.props;
-    Api.save(page, newContent).then(() => {
-      history.push(`/wiki/${page}`);
-    });
+  static propTypes = {
+    savePage: PropTypes.func.isRequired,
+    viewPage: PropTypes.func.isRequired,
   };
+
+  handleSave = newContent => {
+    const { savePage, match: { params: { page } } } = this.props;
+    savePage(page, newContent);
+  };
+
   handleView = () => {
-    const { history, match: { params: { page } } } = this.props;
-    history.push(`/wiki/${page}`);
+    const { viewPage, match: { params: { page } } } = this.props;
+    viewPage(page);
   };
 
   render() {
@@ -30,4 +38,7 @@ class NewWikiPage extends Component {
   }
 }
 
-export default withRouter(NewWikiPage);
+const withCache = connect(undefined, actions);
+const enhance = compose(withRouter, withCache);
+
+export default enhance(NewWikiPage);
