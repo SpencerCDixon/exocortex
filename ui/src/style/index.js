@@ -12,6 +12,15 @@ export const baseIcon = `
   }
 `;
 
+export const strokeIcon = `
+  stroke: ${colors.gray1};
+
+  &:hover {
+    cursor: pointer;
+    stroke: ${colors.gray2};
+  }
+`;
+
 export default {
   colors,
 };

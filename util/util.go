@@ -53,7 +53,6 @@ func ReadFileJSON(path string, v interface{}) error {
 	if err := json.Unmarshal(b, &v); err != nil {
 		return errors.Wrap(err, "unmarshaling")
 	}
-
 	return nil
 }
 

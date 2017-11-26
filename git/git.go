@@ -58,9 +58,9 @@ func (gs *Store) Init() error {
 	if !ok {
 		_, err := gs.exec("init")
 		return err
-	} else {
-		return errors.New("Git repo already exists")
 	}
+
+	return errors.New("Git repo already exists")
 }
 
 // Status returns the status of the git repo
@@ -71,16 +71,7 @@ func (gs *Store) Status() (string, error) {
 // Commit does a git commit with whatever message we want
 func (gs *Store) Commit(path, msg string) (string, error) {
 	if len(msg) == 0 {
-		author, err := gs.CurrentUser()
-		if err != nil {
-			author = "Unknown"
-		}
-		msg = fmt.Sprintf(
-			"exo: Updated %s by %s at %s",
-			path,
-			author,
-			time.Now().Format(time.Kitchen),
-		)
+		msg = gs.ExoMessage(path, "Updated")
 	}
 
 	return gs.exec("commit", "-m", msg, path)
@@ -97,6 +88,19 @@ func (gs *Store) Add(path, msg string) (string, error) {
 	return gs.Commit(path, msg)
 }
 
+// Remove deletes a page from the wiki
+func (gs *Store) Remove(path, msg string) error {
+	_, err := gs.exec("rm", path)
+	if err != nil {
+		return err
+	}
+	_, err = gs.Commit(path, msg)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // LSPattern lets us list files in a specific dir
 func (gs *Store) LSPattern(pattern string) (string, error) {
 	return gs.exec("ls-tree", "--name-only", "-r", "HEAD", "--", pattern)
@@ -111,7 +115,7 @@ func (gs *Store) LS() ([]string, error) {
 	return filterPrefixes(str), nil
 }
 
-// The current author according to global git config
+// CurrentUser returns the current author according to global git config
 func (gs *Store) CurrentUser() (string, error) {
 	return gs.exec("config", "--get", "user.name")
 }
@@ -168,7 +172,57 @@ func (gs *Store) WritePage(p *exo.Page) error {
 	return nil
 }
 
-// Ensures we have git installed and there is a repo in the directory the user
+// Pull grabs the latest code from the remote branch this store is tracking
+func (gs *Store) Pull() (string, error) {
+	return gs.exec("pull", gs.Remote, gs.Branch)
+}
+
+// Push pushes the current state of the wiki to the remote branch
+// this store is tracking.
+func (gs *Store) Push() (string, error) {
+	return gs.exec("push", gs.Remote, gs.Branch)
+}
+
+// Sync pulls latest changes and pushes up any new commits to the remote branch
+// this store is tracking.
+func (gs *Store) Sync(secondInterval int) {
+	for {
+		time.Sleep(time.Duration(secondInterval) * time.Second)
+
+		log.Debugf("Starting sync for remote '%s' and branch '%s'", gs.Remote, gs.Branch)
+		start := time.Now()
+		_, err := gs.Pull()
+		if err != nil {
+			log.Debug(err.Error())
+		}
+
+		_, err = gs.Push()
+		if err != nil {
+			log.Debug(err.Error())
+		}
+		end := time.Now()
+		log.Debugf("Finished sync in: %v", end.Sub(start))
+	}
+}
+
+// ExoMessage returns a uniform commit message to be used for various CRUD tasks
+func (gs *Store) ExoMessage(page, action string) string {
+	var author string
+	author, err := gs.CurrentUser()
+	if err != nil {
+		author = "Unknown"
+	}
+
+	return fmt.Sprintf(
+		"exo: %s %s by %s at %s",
+		action,
+		page,
+		author,
+		time.Now().Format(time.Kitchen),
+	)
+}
+
+// EnsureValidEnvironment ensures we have git installed and there is a repo in the directory the user
 // decided to host their wiki in. Return error if anything is wrong so callers
 // can bail out before continueing
 func (gs *Store) EnsureValidEnvironment() error {

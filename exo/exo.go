@@ -38,3 +38,22 @@ type SearchResult struct {
 	Content    string `json:"content"`
 	LineNumber string `json:"line_number"`
 }
+
+// WikiSettings are found in all 'exocortex.json' files.
+type WikiSettings struct {
+	Server struct {
+		Host string `json:"host"`
+		Port int    `json:"port"`
+	} `json:"server"`
+	Repository   string `json:"repository"`
+	SyncInterval int    `json:"syncInterval"`
+	Title        string `json:"title"`
+	Remote       string `json:"remote"`
+	Branch       string `json:"branch"`
+}
+
+// SettingsUpdateRequest is the struct used to allow users to update their
+// wiki settings via the API.  Only a few fields are allowed to be updated.
+type SettingsUpdateRequest struct {
+	Title string `json:"title"`
+}

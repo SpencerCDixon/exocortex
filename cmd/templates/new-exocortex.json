@@ -1,0 +1,11 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 1234
+  },
+  "repository": "{{.Repo}}",
+  "syncInterval": 30,
+  "title": "My Wiki",
+  "remote": "origin",
+  "branch": "master"
+}

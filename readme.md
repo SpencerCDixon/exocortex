@@ -2,7 +2,7 @@
 
 # Exocortex
 
-A **modern** personal **wiki** that doesn't suck.
+A **modern** git based personal **wiki** that doesn't suck.
 
 ## Features
 
@@ -13,22 +13,24 @@ A **modern** personal **wiki** that doesn't suck.
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
 * **Prefetch pages for fast response times**
-* [**Automatic Table Of Contents on pages you want**](#auto-toc)
+* [**Automatic Table Of Contents on pages (if you want)**](#auto-toc)
+* **Spellcheck while you edit**
+* Many more...
 
 ## Why?
 
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
 get going (including sometimes installing new languages!).  Exocortex aims to
-solve these problems.
+solve some these problems.
 
 ## First Principles
 
-1. Should be easy to run locally - `brew install exocortex && exo new && exo`
+1. Should be easy to run locally - `brew install exocortex && exo new && exo start`
 2. Should only require a git repo to operate - `git init`
-3. Should have a modern interface that is a pleasure to work with (SPA React) - comes with the binary.
+3. Should have a modern interface that is a pleasure to work with (SPA React) - comes bundled with the binary.
 4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
-5. Should only allow markdown for editing to reduce feature bloat.
+5. Should only allow markdown for editing to reduce feature bloat - `.md` ftw :smiley:
 
 ## User Requirements
 
@@ -58,13 +60,17 @@ $ cd my-first-wiki && exo start
 
 ## Configuration
 
+You shouldn't really need to worry about this.  If you run `exo new` to create a
+wiki or `exo init` in an existing directory full of .md files these will get
+pre-populated with sensible defaults.
+
 * `syncInterval` - time between remote pushes if remote is set up
 * `repository` - absolute path to where the repo for this wiki lives
 * `title` - base title for the wiki
 * `remote` - where to push the wiki to on the interval
-* `server.host` - can be used for OAuth in the future
-* `server.port` - port for the server to listen
-* `anonymousRead` - allow anonymous users to read pages
+* `branch` - branch to use when pushing/pulling from remote
+* `server.host` - host wiki is located at
+* `server.port` - port to listen on
 
 ## Hotkeys
 
@@ -115,18 +121,22 @@ TODO: more to come...
 
 Exocortex is missing a lot of useful features that would enable it to go beyond
 just being a local personal wiki.  I developed it while on Thanksgiving vacation
-so there was a limited feature set that I decided to prioritize.  See below for
-a list of enhancements I'd like to add in the coming weeks:
+
+primarily on planes so there was a limited feature set that I decided to prioritize.  
+See below for a list of enhancements I'd like to add in the coming weeks:
 
 - [ ] User authentication
+- [ ] Prefetching of pages for better responsiveness
 - [ ] Better UI customization/overrides
+- [ ] Add ability to revert pages to previous commits
+- [ ] Add ability to see diffs between commits
 
 ## Folder structure
 
 ```sh
-home.md         <-- file used for wiki homepage
-exocortex.json  <-- wiki globals
-.git            <-- data store for the wiki
+home.md         <-- file used for wiki homepage (not required)
+exocortex.json  <-- wiki globals (required)
+.git            <-- data store for the wiki (required)
 ```
 
 That's it!  The rest of your wiki can be structured however you'd like.
@@ -135,14 +145,14 @@ That's it!  The rest of your wiki can be structured however you'd like.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| **POST** | `/api/session` | TODO. sign in local user (match against white list of email/passes) |
-| **GET** | `/api/settings` | TODO. returns global wiki settings |
-| **POST** | `/api/settings` | TODO. sets settings |
+| **GET** | `/api/settings` | returns global wiki settings |
+| **POST** | `/api/settings` | sets settings - only certain fields are allowed to be updated via API |
 | **POST** | `/api/search` | search through wiki for a query |
+| **POST** | `/api/images/:path-to-image` | serve static images found in the wiki |
 | **GET** | `/api/wiki/:page-name` | retrieves content for this page |
 | **POST** | `/api/wiki/:page-name` | writes the file, commits |
-| **DELETE** | `/api/wiki/:page-name` | TODO. deletes the page |
-| **GET** | `/api/` | returns list of prefixes available|
+| **DELETE** | `/api/wiki/:page-name` | deletes the page |
+| **GET** | `/api/` | returns list of prefixes available |
 | **GET** | `/*` | return the UI |
 
 ## UI Routes
@@ -152,7 +162,8 @@ That's it!  The rest of your wiki can be structured however you'd like.
 | `/wiki/:page-name` | Renders markdown of that path |
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |
-| `/wiki/revisions/:page-name` | See past revisions |
+| `/wiki/revisions/:page-name` | TODO: See past revisions |
+
 
 ## Why the name Exocortex?
 
@@ -167,21 +178,23 @@ a year or so ago and this project aims to be a nice interface for that work.
 free time I'll be able to commit to working on this.  If there is a feature you
 _aboslutely must have right away_ then feel free to fork!
 
+There are a whole bunch of TODO's I'm working through [located here](./todo.md).
+If you want to help contribute those are a good place to start.
+
 Ensure you have the following installed:
 
 * `go 1.9`
 * `node >6`
 * `yarn`
 
-**Quick Start**
+**Quick Start Development**
 
 Make bootstrap will build the UI, install the Go binary, create an empty example
 wiki, and boot up that example wiki on `localhost:1234`.
 
 ```sh
-$ mkdir -p $GOPATH/github.com/spencercdixon
-$ cd $GOPATH/github.com/spencercdixon && git clone git@github.com:SpencerCDixon/exocortex.git
-$ cd exocortex
+$ go get -u github.com/spencercdixon/exocortex
+$ cd $GOPATH/github.com/spencercdixon/exocortex
 $ make bootstrap
 ```
 

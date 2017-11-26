@@ -25,11 +25,11 @@ class WikiPage extends Component {
   };
 
   render() {
-    const { onEdit, content } = this.props;
+    const { onDelete, onEdit, content } = this.props;
     return (
       <ContentWrapper>
         <Box pb={2} px={2}>
-          <ViewToolbar onEdit={onEdit} />
+          <ViewToolbar onDelete={onDelete} onEdit={onEdit} />
         </Box>
         <Markdown>{content}</Markdown>
       </ContentWrapper>

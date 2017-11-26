@@ -11,6 +11,7 @@ import (
 	"github.com/apex/log"
 	"github.com/gorilla/mux"
 	"github.com/spencercdixon/exocortex/exo"
+	"github.com/spencercdixon/exocortex/util"
 	"gopkg.in/h2non/filetype.v1"
 )
 
@@ -108,4 +109,50 @@ func (wiki *wiki) handleImages(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", kind.MIME.Value)
 	io.Copy(w, bytes.NewReader(imgBuf))
 	return
+}
+
+func (wiki *wiki) handleGetSettings(w http.ResponseWriter, r *http.Request) {
+	settings := &exo.WikiSettings{}
+	util.ReadFileJSON(wiki.SettingsPath(), settings)
+	wiki.renderJSON(w, http.StatusOK, settings)
+}
+
+func (wiki *wiki) handleUpdateSettings(w http.ResponseWriter, r *http.Request) {
+	// Parse current settings and request
+	settings := &exo.WikiSettings{}
+	util.ReadFileJSON(wiki.SettingsPath(), settings)
+	req := &exo.SettingsUpdateRequest{}
+	wiki.parseRequest(r, req)
+
+	// Update any fields that can be updated
+	if req.Title != "" {
+		settings.Title = req.Title
+	}
+
+	// Save new settings
+	if err := wiki.WriteSettings(settings); err != nil {
+		http.Error(w, "error marshalling settings", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+}
+
+func (wiki *wiki) handleDelete(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pageToDelete := vars["page"]
+	if pageToDelete == "" {
+		http.Error(w, "Nothing to delete", http.StatusOK)
+		return
+	}
+	path := util.EnsureMDPath(pageToDelete)
+	log.Debugf("Deleting page: %s", pageToDelete)
+	msg := wiki.store.ExoMessage(path, "Deleted")
+	err := wiki.store.Remove(path, msg)
+	if err != nil {
+		log.Errorf("Erorr deleting page: %s", err.Error())
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(200)
 }
