@@ -139,10 +139,9 @@ pre-populated with sensible defaults.
 ## Feature Roadmap
 
 Exocortex is missing a lot of useful features that would enable it to go beyond
-just being a local personal wiki.  I developed it while on Thanksgiving vacation
-
-primarily on planes so there was a limited feature set that I decided to prioritize.  
-See below for a list of enhancements I'd like to add in the coming weeks:
+just being a local personal wiki.  I developed it while on Thanksgiving vacation primarily 
+on planes so there was a limited feature set that I decided to prioritize.  See below for a list of 
+enhancements I'd like to add in the coming weeks:
 
 - [ ] User authentication
 - [ ] Prefetching of pages for better responsiveness
