@@ -1,4 +1,4 @@
-import { combineActions, handleActions, createAction } from 'redux-actions';
+import { handleActions, createAction } from 'redux-actions';
 import { createSelector } from 'reselect';
 
 // ---------

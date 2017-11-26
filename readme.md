@@ -12,7 +12,7 @@ A **modern** git based personal **wiki** that doesn't suck.
 * **Git based versioning**
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
-* **Prefetch pages for fast response times**
+* **Prefetch internal wiki pages for faster response times**
 * [**Automatic Table Of Contents on pages (if you want)**](#auto-toc)
 * **Spellcheck while you edit**
 * **Live markdown preview**

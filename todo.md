@@ -19,9 +19,9 @@
 - [x] zen mode editing
 - [x] add state management with redux/mobx to the UI
 - [x] add hotkey for 'cmd + ?' to toggle the hotkey toolbar
-- [ ] create local cache of pages that are loaded 
-- [ ] prefetch pages in same prefix so they're ready to go
-- [ ] expose endpoint for setting style theme
+- [x] create local cache of pages that are loaded 
+- [x] prefetch pages in same prefix so they're ready to go
+- [x] expose endpoint for setting style theme
 - [ ] change color of top bar based on different modes like I have in vim
 - [ ] look into vim edit mode for slate
 - [ ] come up with a better code highlighting solution

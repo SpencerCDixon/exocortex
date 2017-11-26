@@ -30,7 +30,6 @@ class Editor extends Component {
 
   handleSave = () => {
     this.props.onSave(this.state.raw);
-    this.props.onView();
   };
 
   handlePreviewToggle = () => {

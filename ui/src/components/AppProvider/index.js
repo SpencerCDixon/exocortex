@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import App from 'components/App';
 import { Provider } from 'react-redux';
+import history from 'util/history';
 
 // Global CSS
 import 'sanitize.css';
@@ -16,7 +17,7 @@ class AppProvider extends Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <Router>
+        <Router history={history}>
           <App />
         </Router>
       </Provider>

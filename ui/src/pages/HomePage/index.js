@@ -10,7 +10,7 @@ class HomePage extends Component {
   componentDidMount() {
     const { history } = this.props;
     Api.view('home.md')
-      .then(({ status, data }) => {
+      .then(({ status }) => {
         if (status === 200) {
           history.push(`/wiki/home`);
         }
@@ -20,7 +20,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { loading, data } = this.state;
+    const { loading } = this.state;
     if (loading) return null;
 
     return (

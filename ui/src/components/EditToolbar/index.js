@@ -15,13 +15,12 @@ const Close = styled(X)`
 class EditToolbar extends Component {
   static propTypes = {
     onSave: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   };
 
   render() {
     return (
       <Flex align="center">
-        <Box />
-
         <Flex ml="auto">
           <Box>
             <Save onClick={this.props.onSave} />
