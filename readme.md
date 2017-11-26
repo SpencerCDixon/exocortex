@@ -37,7 +37,7 @@ solve some these problems.
 1. Must have `git` installed
 2. Wiki must **be a git repository**
 3. Must have an `exocortex.json` in your repo.  (`exo init` for existing projects)
-4. Nothing else :smiley:
+4. Nothing else :boom:
 
 ## Installation
 
