@@ -51,7 +51,7 @@ class WikiLink extends Component {
   }
 
   get resolvedPath() {
-    const { page, href } = this.props;
+    const { match: { params: { page } }, href } = this.props;
     if (this.isHash) {
       return path.resolve('/wiki/', page + href);
     } else {
@@ -60,7 +60,7 @@ class WikiLink extends Component {
   }
 
   render() {
-    const { href, children, match: { params: { page } } } = this.props;
+    const { href, children } = this.props;
 
     if (this.isHash) {
       return <HashLink to={this.resolvedPath}>{children}</HashLink>;

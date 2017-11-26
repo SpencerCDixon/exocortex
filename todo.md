@@ -36,6 +36,7 @@
 - [ ] add modals and toast support for alerts to users and confirmations on dangerous tasks
 - [ ] add support for titles on various pages
 - [ ] add a 'README.md' to generated wikis so their githubs aren't blank
+- [ ] open localhost:1234 on the exo start command
  
 ## Interesting Resources To Investigate
 * [resolve path](https://github.com/mjackson/resolve-pathname)
