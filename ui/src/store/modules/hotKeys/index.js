@@ -7,11 +7,6 @@ import { createSelector } from 'reselect';
 export const NAME = '@@exo/hotKeys';
 export const TOGGLE_ZEN = `${NAME}/TOGGLE_ZEN`;
 export const TOGGLE_HELP = `${NAME}/TOGGLE_HELP`;
-export const MODES = {
-  editing: 'editing',
-  preview: 'preview',
-  view: 'view',
-};
 
 // -------
 // Actions
