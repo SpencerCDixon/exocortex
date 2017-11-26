@@ -2,7 +2,7 @@
 
 # Exocortex
 
-A **modern** personal **wiki** that doesn't suck.
+A **modern** git based personal **wiki** that doesn't suck.
 
 ## Features
 
@@ -12,22 +12,24 @@ A **modern** personal **wiki** that doesn't suck.
 * **Git based versioning**
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
-* [**Automatic Table Of Contents on pages you want**](#auto-toc)
+* [**Automatic Table Of Contents on pages (if you want)**](#auto-toc)
+* **Spellcheck while you edit**
+* Many more...
 
 ## Why?
 
 I couldn't find an open source wiki solution that I was happy with.  They either
 looked super shitty, had terrible UX, or required a _ton_ of configuration to
 get going (including sometimes installing new languages!).  Exocortex aims to
-solve these problems.
+solve some these problems.
 
 ## First Principles
 
-1. Should be easy to run locally - `brew install exocortex && exo new && exo`
+1. Should be easy to run locally - `brew install exocortex && exo new && exo start`
 2. Should only require a git repo to operate - `git init`
-3. Should have a modern interface that is a pleasure to work with (SPA React) - comes with the binary.
+3. Should have a modern interface that is a pleasure to work with (SPA React) - comes bundled with the binary.
 4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
-5. Should only allow markdown for editing to reduce feature bloat.
+5. Should only allow markdown for editing to reduce feature bloat - `.md` ftw :smiley:
 
 ## User Requirements
 
@@ -56,6 +58,10 @@ $ cd my-first-wiki && exo start
 * `exo` - alias for start
 
 ## Configuration
+
+You shouldn't really need to worry about this.  If you run `exo new` to create a
+wiki or `exo init` in an existing directory full of .md files these will get
+pre-populated with sensible defaults.
 
 * `syncInterval` - time between remote pushes if remote is set up
 * `repository` - absolute path to where the repo for this wiki lives
@@ -169,13 +175,16 @@ a year or so ago and this project aims to be a nice interface for that work.
 free time I'll be able to commit to working on this.  If there is a feature you
 _aboslutely must have right away_ then feel free to fork!
 
+There are a whole bunch of TODO's I'm working through [located here](./todo.md).
+If you want to help contribute those are a good place to start.
+
 Ensure you have the following installed:
 
 * `go 1.9`
 * `node >6`
 * `yarn`
 
-**Quick Start**
+**Quick Start Development**
 
 Make bootstrap will build the UI, install the Go binary, create an empty example
 wiki, and boot up that example wiki on `localhost:1234`.
