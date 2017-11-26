@@ -75,7 +75,7 @@ pre-populated with sensible defaults.
 
 ## Hotkeys
 
-![Hot keys gif](./assets/hotkeys.gif)
+![Hot keys gif](assets/hotkeys.gif)
 
 <table>
   <tr>
