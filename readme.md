@@ -75,7 +75,7 @@ pre-populated with sensible defaults.
 
 ## Hotkeys
 
-TODO: more to come...
+![Hot keys gif](./assets/hotkeys.gif)
 
 <table>
   <tr>
@@ -93,12 +93,30 @@ TODO: more to come...
     </td>
   </tr>
   <tr>
+    <td>Help Mode</td>
+    <td>
+      <kbd>cmd</kbd> + <kbd>/|? </kbd>
+    </td>
+    <td>
+      Show hot key help
+    </td>
+  </tr>
+  <tr>
     <td>Insert Mode</td>
     <td>
       <kbd>cmd</kbd> + <kbd>i </kbd>
     </td>
     <td>
       Turn whatever page you're viewing into 'edit' mode
+    </td>
+  </tr>
+  <tr>
+    <td>Save Page</td>
+    <td>
+      <kbd>cmd</kbd> + <kbd>s </kbd>
+    </td>
+    <td>
+      Save the page you're working on
     </td>
   </tr>
   <tr>
