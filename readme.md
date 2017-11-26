@@ -12,6 +12,7 @@ A **modern** git based personal **wiki** that doesn't suck.
 * **Git based versioning**
 * **Git based syncing (to GitHub)**
 * **Intuitive hotkeys for better editing UX**
+* **Prefetch pages for fast response times**
 * [**Automatic Table Of Contents on pages (if you want)**](#auto-toc)
 * **Spellcheck while you edit**
 * Many more...
@@ -120,6 +121,7 @@ TODO: more to come...
 
 Exocortex is missing a lot of useful features that would enable it to go beyond
 just being a local personal wiki.  I developed it while on Thanksgiving vacation
+
 primarily on planes so there was a limited feature set that I decided to prioritize.  
 See below for a list of enhancements I'd like to add in the coming weeks:
 
@@ -161,6 +163,7 @@ That's it!  The rest of your wiki can be structured however you'd like.
 | `/wiki/new/:page-name` | Create a new page that doesn't exist in tree yet |
 | `/wiki/edit/:page-name` | Update a page that exists |
 | `/wiki/revisions/:page-name` | TODO: See past revisions |
+
 
 ## Why the name Exocortex?
 
