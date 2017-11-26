@@ -187,9 +187,10 @@ func (gs *Store) Push() (string, error) {
 // this store is tracking.
 func (gs *Store) Sync(secondInterval int) {
 	for {
-		start := time.Now()
-		log.Debugf("Starting sync for remote '%s' and branch '%s'", gs.Remote, gs.Branch)
 		time.Sleep(time.Duration(secondInterval) * time.Second)
+
+		log.Debugf("Starting sync for remote '%s' and branch '%s'", gs.Remote, gs.Branch)
+		start := time.Now()
 		_, err := gs.Pull()
 		if err != nil {
 			log.Debug(err.Error())
