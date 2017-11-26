@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from 'components/NavBar';
-import { Redirect, Switch, Route } from 'react-router-dom';
+import { withRouter, Redirect, Switch, Route } from 'react-router-dom';
 import HotkeyHelp from 'components/HotkeyHelp';
 import isHotkey from 'is-hotkey';
 import styled from 'styled-components';
@@ -57,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default connect(undefined, { toggleZen })(App);
+export default withRouter(connect(undefined, { toggleZen })(App));
