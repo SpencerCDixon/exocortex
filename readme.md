@@ -33,24 +33,26 @@ solve some these problems.
 4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
 5. Should only allow markdown for editing to reduce feature bloat - `.md` ftw :smiley:
 
+## Installation
+
+[Go binaries can be downloaded directly from the releases page.](https://github.com/SpencerCDixon/exocortex/releases)
+
+### Homebrew
+
+```sh
+$ brew tap spencercdixon/formulae
+$ brew install exocortex
+$ exo new my-first-wiki
+$ cd my-first-wiki && exo start
+$ open http://localhost:1234
+```
+
 ## User Requirements
 
 1. Must have `git` installed
 2. Wiki must **be a git repository**
 3. Must have an `exocortex.json` in your repo.  (`exo init` for existing projects)
 4. Nothing else :boom:
-
-## Installation
-
-TODO.
-
-### Homebrew
-
-```sh
-$ brew install exocortex
-$ exo new my-first-wiki
-$ cd my-first-wiki && exo start
-```
 
 ## Commands
 

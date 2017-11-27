@@ -28,5 +28,6 @@ changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^refactor'
+      - '^Docs'
+      - '^Refactor'
+      - '^Removes'
