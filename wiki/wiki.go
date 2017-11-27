@@ -88,7 +88,7 @@ func (wiki *wiki) SettingsPath() string {
 // WriteSettings takes an exo setting struct and writes it to the wiki's proper
 // location.
 func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
-	b, err := json.Marshal(settings)
+	b, err := json.MarshalIndent(settings, "", "  ")
 	if err != nil {
 		return err
 	}
