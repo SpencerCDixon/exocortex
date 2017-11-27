@@ -27,7 +27,7 @@ solve some these problems.
 
 ## First Principles
 
-1. Should be easy to run locally - `brew install exocortex && exo new && exo start`
+1. Should be easy to run locally - `brew install exocortex && exo new my-wiki && cd my-wiki && exo start`
 2. Should only require a git repo to operate - `git init`
 3. Should have a modern interface that is a pleasure to work with (SPA React) - comes bundled with the binary.
 4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
@@ -104,9 +104,9 @@ pre-populated with sensible defaults.
     </td>
   </tr>
   <tr>
-    <td>Insert Mode</td>
+    <td>Insert/Edit Mode</td>
     <td>
-      <kbd>cmd</kbd> + <kbd>i </kbd>
+      <kbd>cmd</kbd> + <kbd>e|i </kbd>
     </td>
     <td>
       Turn whatever page you're viewing into 'edit' mode
@@ -145,11 +145,12 @@ just being a local personal wiki.  I developed it while on Thanksgiving vacation
 on planes so there was a limited feature set that I decided to prioritize.  See below for a list of 
 enhancements I'd like to add in the coming weeks:
 
+- [x] Prefetching of pages for better responsiveness
 - [ ] User authentication
-- [ ] Prefetching of pages for better responsiveness
 - [ ] Better UI customization/overrides
 - [ ] Add ability to revert pages to previous commits
 - [ ] Add ability to see diffs between commits
+- [ ] Add boilerplates to `new` command to get nice wiki structures fast
 
 ## Folder structure
 
@@ -159,7 +160,8 @@ exocortex.json  <-- wiki globals (required)
 .git            <-- data store for the wiki (required)
 ```
 
-That's it!  The rest of your wiki can be structured however you'd like.
+That's it!  The rest of your wiki can be structured however you'd like.  In the
+future I'd like to include some boilerplates users can start from.
 
 ## API Routes
 
@@ -237,7 +239,8 @@ This should boot up `http://localhost:3000` with a dev server that proxies to
 1. Create a new git tag:
 
 ```sh
-$ git tag -a v0.1.0 -m "v1.0.0 major milestone!"
+$ git tag -a v1.0.0 -m "v1.0.0 major milestone!"
+$ git push origin v1.0.0
 ```
 
 2. Export github token
