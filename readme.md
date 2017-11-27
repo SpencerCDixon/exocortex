@@ -151,6 +151,7 @@ enhancements I'd like to add in the coming weeks:
 - [ ] Add ability to revert pages to previous commits
 - [ ] Add ability to see diffs between commits
 - [ ] Add boilerplates to `new` command to get nice wiki structures fast
+- [ ] Autocomplete on linked wiki pages
 
 ## Folder structure
 
