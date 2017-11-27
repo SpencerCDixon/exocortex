@@ -229,3 +229,22 @@ $ yarn start
 
 This should boot up `http://localhost:3000` with a dev server that proxies to
 `localhost:1234` (where the API lives).
+
+## Releasing
+
+1. Create a new git tag:
+
+```sh
+$ git tag -a v0.1.0 -m "v1.0.0 major milestone!"
+```
+
+2. Export github token
+
+```sh
+$ export GITHUB_TOKEN=<repo access>
+```
+
+3. Use goreleaser to release.
+```sh
+$ make release
+```
