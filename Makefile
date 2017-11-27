@@ -40,7 +40,7 @@ pre-release:
 	@echo "--> Building UI"
 	@cd ui && yarn run build
 	@echo "--> Building packr"
-	@packr build
+	@packr 
 
 post-release:
 	@echo "--> Cleaning packr"

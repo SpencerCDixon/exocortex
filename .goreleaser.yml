@@ -18,9 +18,9 @@ brew:
   commit_author:
     name: Spencer Dixon
     email: spencercdixon@gmail.com
-    folder: Formula
-    homepage: "https://github.com/spencercdixon/exocortex"
-    description: "A modern git based personal wiki"
+  folder: Formula
+  homepage: "https://github.com/spencercdixon/exocortex"
+  description: "A modern git based personal wiki"
 archive:
   format: tar.gz
   replacements:
