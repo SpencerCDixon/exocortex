@@ -37,6 +37,7 @@
 - [ ] add support for titles on various pages
 - [ ] add a 'README.md' to generated wikis so their githubs aren't blank
 - [ ] open localhost:1234 on the exo start command
+- [ ] add an exo `version` command and inject version via lfdflags
  
 ## Interesting Resources To Investigate
 * [resolve path](https://github.com/mjackson/resolve-pathname)

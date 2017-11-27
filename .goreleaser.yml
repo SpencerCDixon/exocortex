@@ -1,3 +1,4 @@
+project_name: exocortex
 builds:
   - main: main.go
     binary: exo
@@ -7,16 +8,16 @@ builds:
       - linux
     goarch:
       - amd64
-# brew:
-  # github:
-    # owner: user
-    # name: homebrew-tap
-    # commit_author:
-      # name: Spencer Dixon
-      # email: spencercdixon@gmail.com
-      # folder: Formula
-      # homepage: "https://github.com/spencercdixon/exocortex"
-      # description: "A modern git based personal wiki"
+brew:
+  github:
+    owner: spencercdixon
+    name: homebrew-formulae
+  commit_author:
+    name: Spencer Dixon
+    email: spencercdixon@gmail.com
+    folder: Formula
+    homepage: "https://github.com/spencercdixon/exocortex"
+    description: "A modern git based personal wiki"
 archive:
   format: tar.gz
   replacements:
