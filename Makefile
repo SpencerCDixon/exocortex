@@ -36,6 +36,16 @@ release:
 	@goreleaser -p 1 --rm-dist -config .goreleaser.yml 
 	@echo "--> Complete"
 
+pre-release:
+	@echo "--> Building UI"
+	@cd ui && yarn run build
+	@echo "--> Building packr"
+	@packr build
+
+post-release:
+	@echo "--> Cleaning packr"
+	@packr clean
+
 # Tests the packages
 test: 
 	@echo "--> Testing the backend"

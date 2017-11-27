@@ -8,6 +8,9 @@ builds:
       - linux
     goarch:
       - amd64
+    hooks:
+      pre: make pre-release
+      post: make post-release
 brew:
   github:
     owner: spencercdixon
