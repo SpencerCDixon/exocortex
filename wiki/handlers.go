@@ -18,7 +18,7 @@ import (
 func (wiki *wiki) handleList(w http.ResponseWriter, r *http.Request) {
 	results, err := wiki.store.LS()
 	if err != nil {
-		log.Debug(err.Error())
+		log.WithError(err).Debug("listing store")
 		http.Error(w, "Unable to list", http.StatusInternalServerError)
 		return
 	}
