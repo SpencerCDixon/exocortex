@@ -42,7 +42,7 @@ class Editor extends Component {
   };
 
   onKeyDown = (event, change) => {
-    if (!event.metaKey) return;
+    if (!event.metaKey) return true;
 
     switch (event.key) {
       case 'p': {
@@ -55,12 +55,8 @@ class Editor extends Component {
         this.handleSave();
         break;
       }
-      case 'v': {
-        event.preventDefault();
-        this.props.onView();
-        break;
-      }
     }
+    return true;
   };
 
   render() {

@@ -32,6 +32,18 @@ pre code.hljs {
 
 code.hljs {
   display: inline;
+  border: 1px solid #dee2e6;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-family: inherit;
+  background: none;
+  color: #444d56;
+}
+
+code.hljs .hljs-keyword {
+  color: #444d56;
 }
 
 pre {
