@@ -46,6 +46,7 @@ $ exo new my-first-wiki
 $ cd my-first-wiki && exo start
 $ open http://localhost:1234
 ```
+[Starting exocortex as a service on boot](#start-on-boot)
 
 ## User Requirements
 
@@ -195,6 +196,15 @@ Learning](https://pragprog.com/book/ahptl/pragmatic-thinking-and-learning).
 Andy Hunt talks a lot about the value of having an 'excortex' or personal wiki
 to record your learning.  I started documenting my own exocortex in `.md` files
 a year or so ago and this project aims to be a nice interface for that work.
+
+## Start On Boot
+
+When using Exocortex as a service it will look at your `$HOME` for a config file to use.  This is how I have my machine setup:
+
+```
+$ ln -s ~/wiki/exocortex.json ~/exocortex.json  <--- Sym link my main wiki's config to home
+$ brew services start exocortex  <--- start the service
+```
 
 ## Development/Contributing
 **Note**: I'm open to bug fixes and feature requests but I'm not sure how much
