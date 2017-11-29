@@ -17,7 +17,7 @@ build: deps
 install: deps
 	@echo "--> Building UI"
 	@cd ui && yarn run build
-	packr build -o $(GOPATH)/bin/exo
+	packr build -o $(GOPATH)/bin/exodev
 	@echo "--> Exo successfully installed"
 	@echo
 	@exo

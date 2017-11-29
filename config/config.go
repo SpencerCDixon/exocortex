@@ -4,14 +4,21 @@ import (
 	"os"
 
 	"github.com/apex/log"
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
 // New finds the most appropriate config file and loads it into our Viper
 // singleton to be used throughout the rest of the application.
 func New(filePath string) {
+	homeDir, err := homedir.Dir()
+	if err != nil {
+		log.WithError(err).Fatal("couldn't find home dir")
+	}
+
 	viper.SetConfigName("exocortex")
 	viper.AddConfigPath(filePath)
+	viper.AddConfigPath(homeDir)
 	viper.AddConfigPath(".")
 	viper.SetEnvPrefix("exo")
 
