@@ -60,7 +60,7 @@ $ open http://localhost:1234
 * `new` - creates a new directory with an `exocortex.json` file
 * `start` - boots up the wiki server
 * `init` - creates a templated `exocortex.json` file based on sensible defaults
-* `exo` - alias for start
+* `version` - shows what version of exo binary you have installed
 
 ## Configuration
 
