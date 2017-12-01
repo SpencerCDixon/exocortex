@@ -26,8 +26,10 @@ A modern wiki that acts an extension of your brain.
 
 ## Getting Started
 
-You're seeing this page it's because you don't currently have a homepage (home.md) set up. 
-Feel free to [click this link to create a custom home page](./home.md).  
+If you're seeing this page it's because you don't currently have a homepage (readme.md) set up. 
+Feel free to [click this link to create a custom homepage](./readme.md).  
+
+A custom homepage is a good place to add links to your most visited sections of your wiki.
 
 ## Hot keys
 

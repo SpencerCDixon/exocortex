@@ -27,7 +27,7 @@ solve some these problems.
 
 ## First Principles
 
-1. Should be easy to run locally - `brew install exocortex && exo new my-wiki && cd my-wiki && exo start`
+1. Should be easy to run locally - `brew install && brew services`
 2. Should only require a git repo to operate - `git init`
 3. Should have a modern interface that is a pleasure to work with (SPA React) - comes bundled with the binary.
 4. Should be backed up in the cloud so I never lose my hard work - thank you GitHub!
@@ -157,7 +157,7 @@ enhancements I'd like to add in the coming weeks:
 ## Folder structure
 
 ```sh
-home.md         <-- file used for wiki homepage (not required)
+readme.md       <-- file used for wiki homepage (not required)
 exocortex.json  <-- wiki globals (required)
 .git            <-- data store for the wiki (required)
 ```
