@@ -22,6 +22,9 @@
 - [x] create local cache of pages that are loaded 
 - [x] prefetch pages in same prefix so they're ready to go
 - [x] expose endpoint for setting style theme
+- [x] add an exo `version` command 
+- [x] when a page get's loaded, scan for all other pages and preemptively prefetch them.
+- [x] add a 'README.md' to generated wikis so their githubs aren't blank
 - [ ] change color of top bar based on different modes like I have in vim
 - [ ] look into vim edit mode for slate
 - [ ] come up with a better code highlighting solution
@@ -30,14 +33,12 @@
 - [ ] change hot key advice based on what mode the user is in
 - [ ] see past revisions and revert back to specific commit
 - [ ] diff view of files
-- [ ] when a page get's loaded, scan for all other pages and preemptively prefetch them.
 - [ ] change home icon to be a brain
 - [ ] fix bug with not being able to click through the hot key helper
 - [ ] add modals and toast support for alerts to users and confirmations on dangerous tasks
 - [ ] add support for titles on various pages
-- [ ] add a 'README.md' to generated wikis so their githubs aren't blank
 - [ ] open localhost:1234 on the exo start command
-- [ ] add an exo `version` command and inject version via lfdflags
+- [ ] last edited
  
 ## Interesting Resources To Investigate
 * [resolve path](https://github.com/mjackson/resolve-pathname)
