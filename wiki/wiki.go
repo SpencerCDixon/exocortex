@@ -88,6 +88,9 @@ func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
 	if err != nil {
 		return err
 	}
-	ioutil.WriteFile(wiki.SettingsPath(), b, 0777)
+	if err := ioutil.WriteFile(wiki.SettingsPath(), b, 0777); err != nil {
+		return err
+	}
 	return nil
 }
+
