@@ -67,17 +67,13 @@ func (wiki *wiki) parseRequest(r *http.Request, data interface{}) error {
 }
 
 func (wiki *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
-	jsonData, err := json.Marshal(data)
-
-	if err != nil {
+	if err := json.NewEncoder(w).Encode(data); err != nil {
 		log.Debugf("Error marshalling JSON: %s", err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	w.Write(jsonData)
 }
 
 // SettingsPath is the absolute path to where the wiki's configuration lives.
@@ -92,6 +88,9 @@ func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
 	if err != nil {
 		return err
 	}
-	ioutil.WriteFile(wiki.SettingsPath(), b, 0777)
+	if err := ioutil.WriteFile(wiki.SettingsPath(), b, 0777); err != nil {
+		return err
+	}
 	return nil
 }
+
