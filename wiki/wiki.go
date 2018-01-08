@@ -67,17 +67,13 @@ func (wiki *wiki) parseRequest(r *http.Request, data interface{}) error {
 }
 
 func (wiki *wiki) renderJSON(w http.ResponseWriter, status int, data interface{}) {
-	jsonData, err := json.Marshal(data)
-
-	if err != nil {
+	if err := json.NewEncoder(w).Encode(data); err != nil {
 		log.Debugf("Error marshalling JSON: %s", err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	w.Write(jsonData)
 }
 
 // SettingsPath is the absolute path to where the wiki's configuration lives.
