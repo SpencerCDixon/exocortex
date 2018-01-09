@@ -20,7 +20,7 @@ install: deps
 	packr build -o $(GOPATH)/bin/exodev
 	@echo "--> Exo successfully installed"
 	@echo
-	@exo
+	@exodev
 
 # Bootstraps a contributing setup to make getting involved in project easier
 bootstrap: install

@@ -9,7 +9,7 @@ import (
 )
 
 // Version is the currently running version of Exocortex
-const Version = "v0.2.2"
+const Version = "v0.2.3"
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
