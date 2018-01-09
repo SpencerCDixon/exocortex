@@ -42,21 +42,14 @@ class Editor extends Component {
   };
 
   onKeyDown = (event, change) => {
-    if (!event.metaKey) return true;
-
-    switch (event.key) {
-      case 'p': {
-        event.preventDefault();
-        this.handlePreviewToggle();
-        break;
-      }
-      case 's': {
-        event.preventDefault();
-        this.handleSave();
-        break;
-      }
+    if (event.metaKey && event.key === 'p') {
+      event.preventDefault();
+      this.handlePreviewToggle();
     }
-    return true;
+    if (event.metaKey && event.key === 's') {
+      event.preventDefault();
+      this.handleSave();
+    }
   };
 
   render() {
