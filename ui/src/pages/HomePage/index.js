@@ -10,8 +10,8 @@ class HomePage extends Component {
   componentDidMount() {
     const { history } = this.props;
     Api.view('readme.md')
-      .then(({ status }) => {
-        if (status === 200) {
+      .then(({ data }) => {
+        if (data.body) {
           history.push(`/wiki/readme`);
         }
         this.setState({ loading: false });

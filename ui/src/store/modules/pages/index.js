@@ -22,7 +22,7 @@ const deletedPage = createAction(DELETED_PAGE);
 export const viewPage = page => dispatch => {
   Api.view(page)
     .then(({ data, status }) => {
-      if (status === 404) {
+      if (!data.body) {
         history.push(`/wiki/new/${page}`);
       } else {
         dispatch(fetchedPage({ page, content: data.body }));
