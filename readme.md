@@ -227,7 +227,7 @@ wiki, and boot up that example wiki on `localhost:1234`.
 
 ```sh
 $ go get -u github.com/spencercdixon/exocortex
-$ cd $GOPATH/github.com/spencercdixon/exocortex
+$ cd $GOPATH/src/github.com/spencercdixon/exocortex
 $ make bootstrap
 ```
 
