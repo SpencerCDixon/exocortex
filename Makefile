@@ -27,27 +27,27 @@ bootstrap: install
 	@echo "--> Creating new example wiki for you"
 	@mkdir ../example-wiki && cd ../example-wiki && exo init && git init && git init && git add -A && git commit -m "First Commit"
 	@echo "--> Starting up the wiki"
-	@cd ../example-wiki && exo start . & 
+	@cd ../example-wiki && exo start . &
 	@open http://localhost:1234
 
 # Releases new version of exo to GitHub and Homebrew
 release:
 	@echo "--> Releasing"
-	@goreleaser -p 1 --rm-dist -config .goreleaser.yml 
+	@goreleaser -p 1 --rm-dist -config .goreleaser.yml
 	@echo "--> Complete"
 
 pre-release:
 	@echo "--> Building UI"
 	@cd ui && yarn run build
 	@echo "--> Building packr"
-	@packr 
+	@packr
 
 post-release:
 	@echo "--> Cleaning packr"
 	@packr clean
 
 # Tests the packages
-test: 
+test:
 	@echo "--> Testing the backend"
 	@go test ./...
 	@echo "--> Testing the frontend"
