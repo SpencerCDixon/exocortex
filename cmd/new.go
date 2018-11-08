@@ -57,14 +57,14 @@ var newCmd = &cobra.Command{
 			log.Fatalf("Failed to create exocortex.json: %s", err.Error())
 		}
 
-		params := struct{ Repo string }{Repo: newWikiPath}
+		params := struct{ Repo string }{Repo: filepath.ToSlash(newWikiPath)}
 		err = tmpl.Execute(f, params)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
 		log.Debug("Initializing repo")
-		gs := git.Store{Repo: newWikiPath, Remote: "origin", Branch: "master"}
+		gs := git.Store{Repo: filepath.ToSlash(newWikiPath), Remote: "origin", Branch: "master"}
 		if err := gs.Init(); err != nil {
 			log.Fatal(err.Error())
 		}

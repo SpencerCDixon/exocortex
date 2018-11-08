@@ -57,7 +57,7 @@ var initCmd = &cobra.Command{
 		}{}
 
 		// Init is meant to be done in current directory
-		answers.Repo = cwd
+		answers.Repo = filepath.ToSlash(cwd)
 
 		println()
 		err = survey.Ask(qs, &answers)
