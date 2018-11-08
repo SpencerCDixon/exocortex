@@ -24,7 +24,7 @@ type wiki struct {
 // properly and ready to be queried against.
 func New() http.Handler {
 	store := &git.Store{
-		Repo:   viper.GetString("repository"),
+		Repo:   filepath.ToSlash(viper.GetString("repository")),
 		Branch: viper.GetString("branch"),
 		Remote: viper.GetString("remote"),
 	}
@@ -84,6 +84,7 @@ func (wiki *wiki) SettingsPath() string {
 // WriteSettings takes an exo setting struct and writes it to the wiki's proper
 // location.
 func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
+	settings.Repository = filepath.ToSlash(settings.Repository)
 	b, err := json.MarshalIndent(settings, "", "  ")
 	if err != nil {
 		return err
@@ -93,4 +94,3 @@ func (wiki *wiki) WriteSettings(settings *exo.WikiSettings) error {
 	}
 	return nil
 }
-

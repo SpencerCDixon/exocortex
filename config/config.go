@@ -2,9 +2,10 @@ package config
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/apex/log"
-	"github.com/mitchellh/go-homedir"
+	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
@@ -33,5 +34,6 @@ func New(filePath string) {
 	// Set some sane defaults:
 	viper.SetDefault("host.address", "localhost")
 	viper.SetDefault("host.port", 1234)
+	viper.Set("repository", filepath.ToSlash(viper.GetString("repository")))
 	log.Infof("Using configuration file %s", viper.ConfigFileUsed())
 }
